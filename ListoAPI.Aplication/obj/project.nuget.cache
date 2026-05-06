@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "uKn2ZDp632U=",
+  "dgSpecHash": "eOc+hbmfMS4=",
   "success": true,
-  "projectFilePath": "C:\\Users\\LENOVO\\Documents\\Proyectos\\Universidad\\integrador-ii\\listo-backend\\BackListo\\ListoAPI.Aplication\\ListoAPI.Aplication.csproj",
+  "projectFilePath": "C:\\Users\\LENOVO\\Documents\\Proyectos\\Universidad\\integrador-ii\\listo-backend\\ListoAPI.Aplication\\ListoAPI.Aplication.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\LENOVO\\.nuget\\packages\\bcrypt.net-next\\4.1.0\\bcrypt.net-next.4.1.0.nupkg.sha512",
     "C:\\Users\\LENOVO\\.nuget\\packages\\microsoft.entityframeworkcore\\9.0.1\\microsoft.entityframeworkcore.9.0.1.nupkg.sha512",
