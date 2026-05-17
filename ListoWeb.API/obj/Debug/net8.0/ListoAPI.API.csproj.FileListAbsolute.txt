@@ -63,3 +63,5 @@ C:\Users\LENOVO\Documents\Proyectos\Universidad\integrador-ii\listo-backend\List
 C:\Users\LENOVO\Documents\Proyectos\Universidad\integrador-ii\listo-backend\ListoWeb.API\obj\Debug\net8.0\ListoAPI.API.pdb
 C:\Users\LENOVO\Documents\Proyectos\Universidad\integrador-ii\listo-backend\ListoWeb.API\obj\Debug\net8.0\ListoAPI.API.genruntimeconfig.cache
 C:\Users\LENOVO\Documents\Proyectos\Universidad\integrador-ii\listo-backend\ListoWeb.API\obj\Debug\net8.0\ref\ListoAPI.API.dll
+C:\Users\LENOVO\Documents\Proyectos\Universidad\integrador-ii\listo-backend\ListoWeb.API\bin\Debug\net8.0\DotNetEnv.dll
+C:\Users\LENOVO\Documents\Proyectos\Universidad\integrador-ii\listo-backend\ListoWeb.API\bin\Debug\net8.0\Superpower.dll
