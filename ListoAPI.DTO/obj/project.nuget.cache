@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "CvBVOgGs+eI=",
   "success": true,
   "projectFilePath": "C:\\Users\\LENOVO\\Documents\\Proyectos\\Universidad\\integrador-ii\\listo-backend\\ListoAPI.DTO\\ListoAPI.DTO.csproj",
+=======
+  "dgSpecHash": "JzQcUoNkONQ=",
+  "success": true,
+  "projectFilePath": "D:\\UTP\\IntegradorII\\listo-backend\\BackListo\\ListoAPI.DTO\\ListoAPI.DTO.csproj",
+>>>>>>> origin/luis
   "expectedPackageFiles": [],
   "logs": []
 }

@@ -10,7 +10,11 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ListoAPI.DTO
+<<<<<<< HEAD
 build_property.ProjectDir = C:\Users\LENOVO\Documents\Proyectos\Universidad\integrador-ii\listo-backend\BackListo\ListoAPI.DTO\
+=======
+build_property.ProjectDir = D:\UTP\IntegradorII\listo-backend\BackListo\ListoAPI.DTO\
+>>>>>>> origin/luis
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.EffectiveAnalysisLevelStyle = 8.0

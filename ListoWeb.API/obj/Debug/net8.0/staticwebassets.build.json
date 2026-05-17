@@ -1,1 +1,15 @@
+<<<<<<< HEAD
 {"Version":1,"Hash":"QAtznP0hjMFgnqj5FNCZ9l8nCq/pLdzrT3a6HhD8hPo=","Source":"ListoAPI.API","BasePath":"/","Mode":"Root","ManifestType":"Build","ReferencedProjectsConfiguration":[],"DiscoveryPatterns":[],"Assets":[],"Endpoints":[]}
+=======
+{
+  "Version": 1,
+  "Hash": "KbnBfQUovYbk3ZW9JLGRfCCh7Zv9V2jLO3zpgs2W94s=",
+  "Source": "ListoAPI.API",
+  "BasePath": "_content/ListoAPI.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
+>>>>>>> origin/luis

@@ -6,7 +6,7 @@ namespace ListoAPI.DTO
         public string Correo { get; set; }
         public string Password { get; set; }
         public int? IdRol { get; set; } 
-        public string? Rol {get;set;}
+        public string Rol {get;set;}
         public string Nombre { get; set; }
         public DateTime? FechaRegistro { get; set; }
         public string Telefono { get; set; }

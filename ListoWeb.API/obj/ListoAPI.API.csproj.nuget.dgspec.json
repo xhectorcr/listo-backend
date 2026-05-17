@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "C:\\Users\\LENOVO\\Documents\\Proyectos\\Universidad\\integrador-ii\\listo-backend\\ListoWeb.API\\ListoAPI.API.csproj": {}
   },
   "projects": {
@@ -28,6 +29,42 @@
             "projectReferences": {
               "C:\\Users\\LENOVO\\Documents\\Proyectos\\Universidad\\integrador-ii\\listo-backend\\ListoAPI.DTO\\ListoAPI.DTO.csproj": {
                 "projectPath": "C:\\Users\\LENOVO\\Documents\\Proyectos\\Universidad\\integrador-ii\\listo-backend\\ListoAPI.DTO\\ListoAPI.DTO.csproj"
+=======
+    "D:\\UTP\\IntegradorII\\listo-backend\\BackListo\\listoweb.api\\ListoAPI.API.csproj": {}
+  },
+  "projects": {
+    "D:\\UTP\\IntegradorII\\listo-backend\\BackListo\\ListoAPI.Aplication\\ListoAPI.Aplication.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\UTP\\IntegradorII\\listo-backend\\BackListo\\ListoAPI.Aplication\\ListoAPI.Aplication.csproj",
+        "projectName": "ListoAPI.Aplication",
+        "projectPath": "D:\\UTP\\IntegradorII\\listo-backend\\BackListo\\ListoAPI.Aplication\\ListoAPI.Aplication.csproj",
+        "packagesPath": "C:\\Users\\luisa\\.nuget\\packages\\",
+        "outputPath": "D:\\UTP\\IntegradorII\\listo-backend\\BackListo\\ListoAPI.Aplication\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\luisa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "D:\\UTP\\IntegradorII\\listo-backend\\BackListo\\ListoAPI.DTO\\ListoAPI.DTO.csproj": {
+                "projectPath": "D:\\UTP\\IntegradorII\\listo-backend\\BackListo\\ListoAPI.DTO\\ListoAPI.DTO.csproj"
+>>>>>>> origin/luis
               }
             }
           }
@@ -40,6 +77,7 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
+<<<<<<< HEAD
           "auditMode": "all"
         },
         "SdkAnalysisLevel": "10.0.200"
@@ -47,6 +85,15 @@
       "frameworks": {
         "net10.0": {
           "targetAlias": "net10.0",
+=======
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.100"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+>>>>>>> origin/luis
           "dependencies": {
             "BCrypt.Net-Next": {
               "target": "Package",
@@ -81,6 +128,7 @@
               "privateAssets": "all"
             }
           },
+<<<<<<< HEAD
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.203/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
@@ -380,6 +428,40 @@
         "frameworks": {
           "net10.0": {
             "targetAlias": "net10.0",
+=======
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.100/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\UTP\\IntegradorII\\listo-backend\\BackListo\\ListoAPI.DTO\\ListoAPI.DTO.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\UTP\\IntegradorII\\listo-backend\\BackListo\\ListoAPI.DTO\\ListoAPI.DTO.csproj",
+        "projectName": "ListoAPI.DTO",
+        "projectPath": "D:\\UTP\\IntegradorII\\listo-backend\\BackListo\\ListoAPI.DTO\\ListoAPI.DTO.csproj",
+        "packagesPath": "C:\\Users\\luisa\\.nuget\\packages\\",
+        "outputPath": "D:\\UTP\\IntegradorII\\listo-backend\\BackListo\\ListoAPI.DTO\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\luisa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+>>>>>>> origin/luis
             "projectReferences": {}
           }
         },
@@ -391,6 +473,7 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
+<<<<<<< HEAD
           "auditMode": "all"
         },
         "SdkAnalysisLevel": "10.0.200"
@@ -398,6 +481,15 @@
       "frameworks": {
         "net10.0": {
           "targetAlias": "net10.0",
+=======
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.100"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+>>>>>>> origin/luis
           "imports": [
             "net461",
             "net462",
@@ -414,6 +506,7 @@
               "privateAssets": "all"
             }
           },
+<<<<<<< HEAD
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.203/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
@@ -716,6 +809,43 @@
             "projectReferences": {
               "C:\\Users\\LENOVO\\Documents\\Proyectos\\Universidad\\integrador-ii\\listo-backend\\ListoAPI.Aplication\\ListoAPI.Aplication.csproj": {
                 "projectPath": "C:\\Users\\LENOVO\\Documents\\Proyectos\\Universidad\\integrador-ii\\listo-backend\\ListoAPI.Aplication\\ListoAPI.Aplication.csproj"
+=======
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.100/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\UTP\\IntegradorII\\listo-backend\\BackListo\\listoweb.api\\ListoAPI.API.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\UTP\\IntegradorII\\listo-backend\\BackListo\\listoweb.api\\ListoAPI.API.csproj",
+        "projectName": "ListoAPI.API",
+        "projectPath": "D:\\UTP\\IntegradorII\\listo-backend\\BackListo\\listoweb.api\\ListoAPI.API.csproj",
+        "packagesPath": "C:\\Users\\luisa\\.nuget\\packages\\",
+        "outputPath": "D:\\UTP\\IntegradorII\\listo-backend\\BackListo\\listoweb.api\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\luisa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "D:\\UTP\\IntegradorII\\listo-backend\\BackListo\\ListoAPI.Aplication\\ListoAPI.Aplication.csproj": {
+                "projectPath": "D:\\UTP\\IntegradorII\\listo-backend\\BackListo\\ListoAPI.Aplication\\ListoAPI.Aplication.csproj"
+>>>>>>> origin/luis
               }
             }
           }
@@ -728,6 +858,7 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
+<<<<<<< HEAD
           "auditMode": "all"
         },
         "SdkAnalysisLevel": "10.0.200"
@@ -735,6 +866,15 @@
       "frameworks": {
         "net10.0": {
           "targetAlias": "net10.0",
+=======
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.100"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+>>>>>>> origin/luis
           "dependencies": {
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
@@ -768,6 +908,7 @@
               "privateAssets": "all"
             }
           },
+<<<<<<< HEAD
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.203/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.AspNetCore": "(,10.0.32767]",
@@ -1183,6 +1324,9 @@
             "System.Xml.XPath": "(,4.3.32767]",
             "System.Xml.XPath.XDocument": "(,5.0.32767]"
           }
+=======
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.100/PortableRuntimeIdentifierGraph.json"
+>>>>>>> origin/luis
         }
       }
     }

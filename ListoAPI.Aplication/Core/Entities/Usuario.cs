@@ -26,7 +26,7 @@ namespace ListoAPI.Aplication.Core.Entities
         public DateTime? FechaRegistro { get; set; }
 
         [Column("telefono")]
-        public string Telefono { get; set; }
+        public string? Telefono { get; set; }
 
         [Column("estado")]
         public bool Estado { get; set; } = true;
