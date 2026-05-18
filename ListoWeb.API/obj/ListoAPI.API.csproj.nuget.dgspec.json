@@ -1,7 +1,7 @@
 {
   "format": 1,
   "restore": {
-    "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\ListoWeb.API\\ListoAPI.API.csproj": {}
+    "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\listoweb.api\\ListoAPI.API.csproj": {}
   },
   "projects": {
     "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\ListoAPI.Aplication\\ListoAPI.Aplication.csproj": {
@@ -158,14 +158,14 @@
         }
       }
     },
-    "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\ListoWeb.API\\ListoAPI.API.csproj": {
+    "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\listoweb.api\\ListoAPI.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\ListoWeb.API\\ListoAPI.API.csproj",
+        "projectUniqueName": "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\listoweb.api\\ListoAPI.API.csproj",
         "projectName": "ListoAPI.API",
-        "projectPath": "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\ListoWeb.API\\ListoAPI.API.csproj",
+        "projectPath": "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\listoweb.api\\ListoAPI.API.csproj",
         "packagesPath": "C:\\Users\\luisa\\.nuget\\packages\\",
-        "outputPath": "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\ListoWeb.API\\obj\\",
+        "outputPath": "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\listoweb.api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

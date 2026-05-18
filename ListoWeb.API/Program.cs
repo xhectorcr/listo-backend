@@ -26,11 +26,11 @@ builder.Services.AddDbContext<ConfigContext>(options =>
     options.EnableDetailedErrors();
     options.EnableSensitiveDataLogging(); 
 });
-
 builder.Services.AddScoped<IRolRepository, RolRepository>();
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<ICategoriaRepository, CategoriaRepository>();
 builder.Services.AddScoped<IProductoRepository, ProductoRepository>();
+builder.Services.AddScoped<IMetodoPagoRepository, MetodoPagoRepository>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>

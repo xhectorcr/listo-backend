@@ -33,3 +33,15 @@ D:\UTP\IntegradorII\listo-backend\BackListo\ListoAPI.DTO\obj\Debug\net8.0\ListoA
 D:\UTP\IntegradorII\listo-backend\BackListo\ListoAPI.DTO\obj\Debug\net8.0\refint\ListoAPI.DTO.dll
 D:\UTP\IntegradorII\listo-backend\BackListo\ListoAPI.DTO\obj\Debug\net8.0\ListoAPI.DTO.pdb
 D:\UTP\IntegradorII\listo-backend\BackListo\ListoAPI.DTO\obj\Debug\net8.0\ref\ListoAPI.DTO.dll
+D:\UTP\IntegradorII\nuevoBack\listo-backend\ListoAPI.DTO\bin\Debug\net8.0\ListoAPI.DTO.deps.json
+D:\UTP\IntegradorII\nuevoBack\listo-backend\ListoAPI.DTO\bin\Debug\net8.0\ListoAPI.DTO.dll
+D:\UTP\IntegradorII\nuevoBack\listo-backend\ListoAPI.DTO\bin\Debug\net8.0\ListoAPI.DTO.pdb
+D:\UTP\IntegradorII\nuevoBack\listo-backend\ListoAPI.DTO\obj\Debug\net8.0\ListoAPI.DTO.GeneratedMSBuildEditorConfig.editorconfig
+D:\UTP\IntegradorII\nuevoBack\listo-backend\ListoAPI.DTO\obj\Debug\net8.0\ListoAPI.DTO.AssemblyInfoInputs.cache
+D:\UTP\IntegradorII\nuevoBack\listo-backend\ListoAPI.DTO\obj\Debug\net8.0\ListoAPI.DTO.AssemblyInfo.cs
+D:\UTP\IntegradorII\nuevoBack\listo-backend\ListoAPI.DTO\obj\Debug\net8.0\ListoAPI.DTO.csproj.CoreCompileInputs.cache
+D:\UTP\IntegradorII\nuevoBack\listo-backend\ListoAPI.DTO\obj\Debug\net8.0\ListoAPI.DTO.sourcelink.json
+D:\UTP\IntegradorII\nuevoBack\listo-backend\ListoAPI.DTO\obj\Debug\net8.0\ListoAPI.DTO.dll
+D:\UTP\IntegradorII\nuevoBack\listo-backend\ListoAPI.DTO\obj\Debug\net8.0\refint\ListoAPI.DTO.dll
+D:\UTP\IntegradorII\nuevoBack\listo-backend\ListoAPI.DTO\obj\Debug\net8.0\ListoAPI.DTO.pdb
+D:\UTP\IntegradorII\nuevoBack\listo-backend\ListoAPI.DTO\obj\Debug\net8.0\ref\ListoAPI.DTO.dll
