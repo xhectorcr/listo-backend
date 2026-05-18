@@ -1,8 +1,7 @@
 using System.Text;
-using ListoWeb.API.Data; // Importar el Inicializador
-using ListoAPI.Aplication.Core.Interfaces;
-using ListoAPI.Aplication.Infrastructure.Data;
-using ListoAPI.Aplication.Infrastructure.Repository;
+using Listo.Application.Interfaces;
+using Listo.Infrastructure.Data;
+using Listo.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -35,7 +34,7 @@ builder.Services.AddScoped<IRolRepository, RolRepository>();
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<ICategoriaRepository, CategoriaRepository>();
 builder.Services.AddScoped<IProductoRepository, ProductoRepository>();
-builder.Services.AddSingleton<ListoWeb.API.Services.CarritoService>();
+builder.Services.AddSingleton<Listo.Application.Services.CarritoService>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -65,8 +64,6 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-app.UseCors("AllowAll"); // ¡Añade esta línea!
-
 // Script de Inicialización de Base de Datos
 using (var scope = app.Services.CreateScope())
 {
@@ -81,10 +78,6 @@ using (var scope = app.Services.CreateScope())
     }
 }
 
-
-
-
-
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -93,6 +86,10 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseRouting();
+app.UseCors("AllowAll");
+
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

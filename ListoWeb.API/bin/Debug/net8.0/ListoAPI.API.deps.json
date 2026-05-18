@@ -9,7 +9,9 @@
       "ListoAPI.API/1.0.0": {
         "dependencies": {
           "DotNetEnv": "3.2.0",
-          "ListoAPI.Aplication": "1.0.0",
+          "Listo.Application": "1.0.0",
+          "Listo.Domain": "1.0.0",
+          "Listo.Infrastructure": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.0",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "9.0.1",
           "Swashbuckle.AspNetCore": "6.6.2"
@@ -53,6 +55,7 @@
       "Microsoft.EntityFrameworkCore/9.0.1": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Abstractions": "9.0.1",
+          "Microsoft.EntityFrameworkCore.Analyzers": "9.0.1",
           "Microsoft.Extensions.Caching.Memory": "9.0.1",
           "Microsoft.Extensions.Logging": "9.0.1"
         },
@@ -71,7 +74,8 @@
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.Relational/9.0.0": {
+      "Microsoft.EntityFrameworkCore.Analyzers/9.0.1": {},
+      "Microsoft.EntityFrameworkCore.Relational/9.0.1": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "9.0.1",
           "Microsoft.Extensions.Caching.Memory": "9.0.1",
@@ -80,11 +84,12 @@
         },
         "runtime": {
           "lib/net8.0/Microsoft.EntityFrameworkCore.Relational.dll": {
-            "assemblyVersion": "9.0.0.0",
-            "fileVersion": "9.0.24.52902"
+            "assemblyVersion": "9.0.1.0",
+            "fileVersion": "9.0.124.61002"
           }
         }
       },
+      "Microsoft.Extensions.ApiDescription.Server/6.0.5": {},
       "Microsoft.Extensions.Caching.Abstractions/9.0.1": {
         "dependencies": {
           "Microsoft.Extensions.Primitives": "9.0.1"
@@ -286,7 +291,7 @@
       "Npgsql.EntityFrameworkCore.PostgreSQL/9.0.1": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "9.0.1",
-          "Microsoft.EntityFrameworkCore.Relational": "9.0.0",
+          "Microsoft.EntityFrameworkCore.Relational": "9.0.1",
           "Npgsql": "9.0.1"
         },
         "runtime": {
@@ -306,6 +311,7 @@
       },
       "Swashbuckle.AspNetCore/6.6.2": {
         "dependencies": {
+          "Microsoft.Extensions.ApiDescription.Server": "6.0.5",
           "Swashbuckle.AspNetCore.Swagger": "6.6.2",
           "Swashbuckle.AspNetCore.SwaggerGen": "6.6.2",
           "Swashbuckle.AspNetCore.SwaggerUI": "6.6.2"
@@ -361,25 +367,37 @@
           }
         }
       },
-      "ListoAPI.Aplication/1.0.0": {
+      "Listo.Application/1.0.0": {
         "dependencies": {
-          "BCrypt.Net-Next": "4.1.0",
-          "ListoAPI.DTO": "1.0.0",
-          "Microsoft.EntityFrameworkCore": "9.0.1",
-          "Microsoft.Extensions.Configuration": "9.0.1",
-          "System.IdentityModel.Tokens.Jwt": "8.17.0"
+          "Listo.Domain": "1.0.0"
         },
         "runtime": {
-          "ListoAPI.Aplication.dll": {
-            "assemblyVersion": "1.0.0.0",
+          "Listo.Application.dll": {
+            "assemblyVersion": "1.0.0",
             "fileVersion": "1.0.0.0"
           }
         }
       },
-      "ListoAPI.DTO/1.0.0": {
+      "Listo.Domain/1.0.0": {
         "runtime": {
-          "ListoAPI.DTO.dll": {
-            "assemblyVersion": "1.0.0.0",
+          "Listo.Domain.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Listo.Infrastructure/1.0.0": {
+        "dependencies": {
+          "BCrypt.Net-Next": "4.1.0",
+          "Listo.Application": "1.0.0",
+          "Microsoft.EntityFrameworkCore": "9.0.1",
+          "Microsoft.EntityFrameworkCore.Relational": "9.0.1",
+          "Microsoft.Extensions.Configuration": "9.0.1",
+          "System.IdentityModel.Tokens.Jwt": "8.17.0"
+        },
+        "runtime": {
+          "Listo.Infrastructure.dll": {
+            "assemblyVersion": "1.0.0",
             "fileVersion": "1.0.0.0"
           }
         }
@@ -427,12 +445,26 @@
       "path": "microsoft.entityframeworkcore.abstractions/9.0.1",
       "hashPath": "microsoft.entityframeworkcore.abstractions.9.0.1.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore.Relational/9.0.0": {
+    "Microsoft.EntityFrameworkCore.Analyzers/9.0.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-j+msw6fWgAE9M3Q/5B9Uhv7pdAdAQUvFPJAiBJmoy+OXvehVbfbCE8ftMAa51Uo2ZeiqVnHShhnv4Y4UJJmUzA==",
-      "path": "microsoft.entityframeworkcore.relational/9.0.0",
-      "hashPath": "microsoft.entityframeworkcore.relational.9.0.0.nupkg.sha512"
+      "sha512": "sha512-c6ZZJZhPKrXFkE2z/81PmuT69HBL6Y68Cl0xJ5SRrDjJyq5Aabkq15yCqPg9RQ3R0aFLVaJok2DA8R3TKpejDQ==",
+      "path": "microsoft.entityframeworkcore.analyzers/9.0.1",
+      "hashPath": "microsoft.entityframeworkcore.analyzers.9.0.1.nupkg.sha512"
+    },
+    "Microsoft.EntityFrameworkCore.Relational/9.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-7Iu0h4oevRvH4IwPzmxuIJGYRt55TapoREGlluk75KCO7lenN0+QnzCl6cQDY48uDoxAUpJbpK2xW7o8Ix69dw==",
+      "path": "microsoft.entityframeworkcore.relational/9.0.1",
+      "hashPath": "microsoft.entityframeworkcore.relational.9.0.1.nupkg.sha512"
+    },
+    "Microsoft.Extensions.ApiDescription.Server/6.0.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Ckb5EDBUNJdFWyajfXzUIMRkhf52fHZOQuuZg/oiu8y7zDCVwD0iHhew6MnThjHmevanpxL3f5ci2TtHQEN6bw==",
+      "path": "microsoft.extensions.apidescription.server/6.0.5",
+      "hashPath": "microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512"
     },
     "Microsoft.Extensions.Caching.Abstractions/9.0.1": {
       "type": "package",
@@ -616,12 +648,17 @@
       "path": "system.identitymodel.tokens.jwt/8.17.0",
       "hashPath": "system.identitymodel.tokens.jwt.8.17.0.nupkg.sha512"
     },
-    "ListoAPI.Aplication/1.0.0": {
+    "Listo.Application/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "ListoAPI.DTO/1.0.0": {
+    "Listo.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Listo.Infrastructure/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

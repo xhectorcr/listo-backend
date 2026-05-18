@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
-using ListoAPI.DTO;
-using ListoWeb.API.Services;
-using ListoAPI.Aplication.Core.Interfaces;
+using Listo.Application.DTOs;
+using Listo.Application.Services;
+using Listo.Application.Interfaces;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using ListoAPI.Aplication.Infrastructure.Data;
+using Listo.Infrastructure.Data;
 
 namespace ListoWeb.API.Controllers
 {
@@ -31,7 +31,7 @@ namespace ListoWeb.API.Controllers
             }
 
             // Buscar producto por YoloLabel
-            var producto = await _context.Set<ListoAPI.Aplication.Core.Entities.Producto>()
+            var producto = await _context.Set<Listo.Domain.Entities.Producto>()
                 .FirstOrDefaultAsync(p => p.YoloLabel.ToLower() == request.YoloLabel.ToLower() && p.Activo);
 
             if (producto == null)

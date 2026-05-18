@@ -86,13 +86,13 @@
       "Microsoft.EntityFrameworkCore.Analyzers/9.0.1": {
         "type": "package"
       },
-      "Microsoft.EntityFrameworkCore.Relational/9.0.0": {
+      "Microsoft.EntityFrameworkCore.Relational/9.0.1": {
         "type": "package",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore": "9.0.0",
-          "Microsoft.Extensions.Caching.Memory": "9.0.0",
-          "Microsoft.Extensions.Configuration.Abstractions": "9.0.0",
-          "Microsoft.Extensions.Logging": "9.0.0"
+          "Microsoft.EntityFrameworkCore": "9.0.1",
+          "Microsoft.Extensions.Caching.Memory": "9.0.1",
+          "Microsoft.Extensions.Configuration.Abstractions": "9.0.1",
+          "Microsoft.Extensions.Logging": "9.0.1"
         },
         "compile": {
           "lib/net8.0/Microsoft.EntityFrameworkCore.Relational.dll": {
@@ -568,31 +568,45 @@
           }
         }
       },
-      "ListoAPI.Aplication/1.0.0": {
+      "Listo.Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "Listo.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Listo.Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Listo.Application.dll": {}
+        }
+      },
+      "Listo.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/Listo.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Listo.Domain.dll": {}
+        }
+      },
+      "Listo.Infrastructure/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "BCrypt.Net-Next": "4.1.0",
-          "ListoAPI.DTO": "1.0.0",
+          "Listo.Application": "1.0.0",
           "Microsoft.EntityFrameworkCore": "9.0.1",
+          "Microsoft.EntityFrameworkCore.Relational": "9.0.1",
           "Microsoft.Extensions.Configuration": "9.0.1",
           "System.IdentityModel.Tokens.Jwt": "8.17.0"
         },
         "compile": {
-          "bin/placeholder/ListoAPI.Aplication.dll": {}
+          "bin/placeholder/Listo.Infrastructure.dll": {}
         },
         "runtime": {
-          "bin/placeholder/ListoAPI.Aplication.dll": {}
-        }
-      },
-      "ListoAPI.DTO/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
-        "compile": {
-          "bin/placeholder/ListoAPI.DTO.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/ListoAPI.DTO.dll": {}
+          "bin/placeholder/Listo.Infrastructure.dll": {}
         }
       }
     }
@@ -701,10 +715,10 @@
         "microsoft.entityframeworkcore.analyzers.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Relational/9.0.0": {
-      "sha512": "j+msw6fWgAE9M3Q/5B9Uhv7pdAdAQUvFPJAiBJmoy+OXvehVbfbCE8ftMAa51Uo2ZeiqVnHShhnv4Y4UJJmUzA==",
+    "Microsoft.EntityFrameworkCore.Relational/9.0.1": {
+      "sha512": "7Iu0h4oevRvH4IwPzmxuIJGYRt55TapoREGlluk75KCO7lenN0+QnzCl6cQDY48uDoxAUpJbpK2xW7o8Ix69dw==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.relational/9.0.0",
+      "path": "microsoft.entityframeworkcore.relational/9.0.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -712,7 +726,7 @@
         "PACKAGE.md",
         "lib/net8.0/Microsoft.EntityFrameworkCore.Relational.dll",
         "lib/net8.0/Microsoft.EntityFrameworkCore.Relational.xml",
-        "microsoft.entityframeworkcore.relational.9.0.0.nupkg.sha512",
+        "microsoft.entityframeworkcore.relational.9.0.1.nupkg.sha512",
         "microsoft.entityframeworkcore.relational.nuspec"
       ]
     },
@@ -1666,40 +1680,47 @@
         "system.identitymodel.tokens.jwt.nuspec"
       ]
     },
-    "ListoAPI.Aplication/1.0.0": {
+    "Listo.Application/1.0.0": {
       "type": "project",
-      "path": "../ListoAPI.Aplication/ListoAPI.Aplication.csproj",
-      "msbuildProject": "../ListoAPI.Aplication/ListoAPI.Aplication.csproj"
+      "path": "../Listo.Application/Listo.Application.csproj",
+      "msbuildProject": "../Listo.Application/Listo.Application.csproj"
     },
-    "ListoAPI.DTO/1.0.0": {
+    "Listo.Domain/1.0.0": {
       "type": "project",
-      "path": "../ListoAPI.DTO/ListoAPI.DTO.csproj",
-      "msbuildProject": "../ListoAPI.DTO/ListoAPI.DTO.csproj"
+      "path": "../Listo.Domain/Listo.Domain.csproj",
+      "msbuildProject": "../Listo.Domain/Listo.Domain.csproj"
+    },
+    "Listo.Infrastructure/1.0.0": {
+      "type": "project",
+      "path": "../Listo.Infrastructure/Listo.Infrastructure.csproj",
+      "msbuildProject": "../Listo.Infrastructure/Listo.Infrastructure.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
       "DotNetEnv >= 3.2.0",
-      "ListoAPI.Aplication >= 1.0.0",
+      "Listo.Application >= 1.0.0",
+      "Listo.Domain >= 1.0.0",
+      "Listo.Infrastructure >= 1.0.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 8.0.0",
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 9.0.1",
       "Swashbuckle.AspNetCore >= 6.6.2"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\LENOVO\\.nuget\\packages\\": {}
+    "C:\\Users\\angel\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\LENOVO\\Documents\\Proyectos\\Universidad\\integrador-ii\\listo-backend\\ListoWeb.API\\ListoAPI.API.csproj",
+      "projectUniqueName": "C:\\Users\\angel\\Documents\\Listo_project\\listo-backend\\ListoWeb.API\\ListoAPI.API.csproj",
       "projectName": "ListoAPI.API",
-      "projectPath": "C:\\Users\\LENOVO\\Documents\\Proyectos\\Universidad\\integrador-ii\\listo-backend\\ListoWeb.API\\ListoAPI.API.csproj",
-      "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\LENOVO\\Documents\\Proyectos\\Universidad\\integrador-ii\\listo-backend\\ListoWeb.API\\obj\\",
+      "projectPath": "C:\\Users\\angel\\Documents\\Listo_project\\listo-backend\\ListoWeb.API\\ListoAPI.API.csproj",
+      "packagesPath": "C:\\Users\\angel\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\angel\\Documents\\Listo_project\\listo-backend\\ListoWeb.API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\angel\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -1711,8 +1732,14 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\LENOVO\\Documents\\Proyectos\\Universidad\\integrador-ii\\listo-backend\\ListoAPI.Aplication\\ListoAPI.Aplication.csproj": {
-              "projectPath": "C:\\Users\\LENOVO\\Documents\\Proyectos\\Universidad\\integrador-ii\\listo-backend\\ListoAPI.Aplication\\ListoAPI.Aplication.csproj"
+            "C:\\Users\\angel\\Documents\\Listo_project\\listo-backend\\Listo.Application\\Listo.Application.csproj": {
+              "projectPath": "C:\\Users\\angel\\Documents\\Listo_project\\listo-backend\\Listo.Application\\Listo.Application.csproj"
+            },
+            "C:\\Users\\angel\\Documents\\Listo_project\\listo-backend\\Listo.Domain\\Listo.Domain.csproj": {
+              "projectPath": "C:\\Users\\angel\\Documents\\Listo_project\\listo-backend\\Listo.Domain\\Listo.Domain.csproj"
+            },
+            "C:\\Users\\angel\\Documents\\Listo_project\\listo-backend\\Listo.Infrastructure\\Listo.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\angel\\Documents\\Listo_project\\listo-backend\\Listo.Infrastructure\\Listo.Infrastructure.csproj"
             }
           }
         }
@@ -1726,8 +1753,7 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      },
-      "SdkAnalysisLevel": "10.0.200"
+      }
     },
     "frameworks": {
       "net8.0": {
@@ -1761,24 +1787,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[8.0.26, 8.0.26]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[8.0.26, 8.0.26]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[8.0.26, 8.0.26]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[8.0.26, 8.0.26]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -1787,7 +1795,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.203/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.420/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
