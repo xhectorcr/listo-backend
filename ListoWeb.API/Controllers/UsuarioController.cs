@@ -2,6 +2,9 @@ using ListoAPI.Aplication.Core.Interfaces;
 using ListoAPI.DTO;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
+using System.Net.Http;
+using System.Text.Json;
 
 namespace ListoAPI.API.Controllers
 {
@@ -10,10 +13,12 @@ namespace ListoAPI.API.Controllers
     public class UsuarioController : ControllerBase
     {
         private readonly IUsuarioRepository _usuarioRepository;
+        private readonly IMemoryCache _cache;
 
-        public UsuarioController(IUsuarioRepository usuarioRepository)
+        public UsuarioController(IUsuarioRepository usuarioRepository, IMemoryCache cache)
         {
             _usuarioRepository = usuarioRepository;
+            _cache = cache;
         }
 
         [AllowAnonymous]
@@ -54,6 +59,79 @@ namespace ListoAPI.API.Controllers
             }
 
             return BadRequest(resultado);
+        }
+
+        [AllowAnonymous]
+        [HttpGet("dni/{dni}")]
+        public async Task<IActionResult> ConsultarDni(string dni)
+        {
+            if (string.IsNullOrWhiteSpace(dni) || dni.Length != 8)
+            {
+                return BadRequest(new ResponseCommonDTO { success = false, message = "El DNI debe tener exactamente 8 dígitos." });
+            }
+
+            // 1. Obtener identificadores del dispositivo o IP
+            string deviceId = Request.Headers["X-Device-ID"].ToString()?.Trim();
+            string ipAddress = HttpContext.Connection.RemoteIpAddress?.ToString()?.Trim();
+
+            // Usamos Device ID como clave principal, o IP como respaldo
+            string cacheKey = !string.IsNullOrEmpty(deviceId) 
+                ? $"DniLimit_Device_{deviceId}" 
+                : $"DniLimit_IP_{ipAddress}";
+
+            // 2. Verificar y aplicar límite de 3 consultas
+            if (_cache.TryGetValue(cacheKey, out int requestCount))
+            {
+                if (requestCount >= 10)
+                {
+                    return StatusCode(429, new ResponseCommonDTO 
+                    { 
+                        success = false, 
+                        message = "Límite superado. Solo se permiten hasta 3 consultas de DNI por dispositivo/red cada 24 horas." 
+                    });
+                }
+            }
+            else
+            {
+                requestCount = 0;
+            }
+
+            try
+            {
+                // 3. Consultar el microservicio externo
+                using (var httpClient = new HttpClient())
+                {
+                    var url = $"https://microservicio-reniec.onrender.com/dni/{dni}";
+                    httpClient.Timeout = TimeSpan.FromSeconds(10);
+                    
+                    var response = await httpClient.GetAsync(url);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var content = await response.Content.ReadAsStringAsync();
+                        
+                        // 4. Incrementar contador en cache y establecer expiración de 24 horas
+                        requestCount++;
+                        _cache.Set(cacheKey, requestCount, TimeSpan.FromHours(24));
+
+                        return Content(content, "application/json");
+                    }
+
+                    return NotFound(new ResponseCommonDTO 
+                    { 
+                        success = false, 
+                        message = "No se encontraron datos para el DNI ingresado en la RENIEC." 
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new ResponseCommonDTO 
+                { 
+                    success = false, 
+                    message = $"Error de comunicación con el servicio de RENIEC: {ex.Message}" 
+                });
+            }
         }
 
         [Route("lista/activos")]

@@ -22,6 +22,9 @@ namespace ListoAPI.Aplication.Core.Entities
         [Column("nombre")]
         public string Nombre { get; set; }
 
+        [Column("dni")]
+        public string? Dni { get; set; }
+
         [Column("fecha_registro")]
         public DateTime? FechaRegistro { get; set; }
 

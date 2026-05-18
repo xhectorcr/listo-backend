@@ -1,5 +1,6 @@
 using ListoAPI.Aplication.Core.Entities;
 using ListoAPI.Aplication.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace ListoWeb.API.Data
 {
@@ -9,6 +10,17 @@ namespace ListoWeb.API.Data
         {
             // Asegurarse de que la base de datos y las tablas existan
             context.Database.EnsureCreated();
+
+            // Asegurarse de que la columna 'dni' exista en la tabla 'Usuario'
+            try
+            {
+                context.Database.ExecuteSqlRaw("ALTER TABLE \"Usuario\" ADD COLUMN IF NOT EXISTS \"dni\" text;");
+                Console.WriteLine("--> Columna 'dni' verificada/agregada a la tabla 'Usuario'.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"--> Nota: No se pudo agregar la columna 'dni' automáticamente: {ex.Message}");
+            }
 
             // 1. Verificar e insertar Roles si no existen
             if (!context.ROL.Any())

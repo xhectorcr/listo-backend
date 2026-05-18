@@ -124,11 +124,21 @@ namespace ListoAPI.Aplication.Infrastructure.Repository
                     return new ResponseCommonDTO { success = false, message = "El correo ya se encuentra registrado." };
                 }
 
+                if (!string.IsNullOrWhiteSpace(pItem.Dni))
+                {
+                    bool dniExiste = await _context.USUARIO.AnyAsync(u => u.Dni == pItem.Dni);
+                    if (dniExiste)
+                    {
+                        return new ResponseCommonDTO { success = false, message = "El DNI ya se encuentra registrado." };
+                    }
+                }
+
                 string passwordHash = BCrypt.Net.BCrypt.HashPassword(pItem.Password);
 
                 var user = new Usuario
                 {
                     Nombre = pItem.Nombre,
+                    Dni = pItem.Dni,
                     Correo = pItem.Correo,
                     Telefono = pItem.Telefono,
                     Password = passwordHash,
