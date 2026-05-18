@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\UTP\\IntegradorII\\listo-backend\\BackListo\\listoweb.api\\ListoAPI.API.csproj": {}
+    "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\ListoWeb.API\\ListoAPI.API.csproj": {}
   },
   "projects": {
-    "D:\\UTP\\IntegradorII\\listo-backend\\BackListo\\ListoAPI.Aplication\\ListoAPI.Aplication.csproj": {
+    "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\ListoAPI.Aplication\\ListoAPI.Aplication.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\UTP\\IntegradorII\\listo-backend\\BackListo\\ListoAPI.Aplication\\ListoAPI.Aplication.csproj",
+        "projectUniqueName": "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\ListoAPI.Aplication\\ListoAPI.Aplication.csproj",
         "projectName": "ListoAPI.Aplication",
-        "projectPath": "D:\\UTP\\IntegradorII\\listo-backend\\BackListo\\ListoAPI.Aplication\\ListoAPI.Aplication.csproj",
+        "projectPath": "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\ListoAPI.Aplication\\ListoAPI.Aplication.csproj",
         "packagesPath": "C:\\Users\\luisa\\.nuget\\packages\\",
-        "outputPath": "D:\\UTP\\IntegradorII\\listo-backend\\BackListo\\ListoAPI.Aplication\\obj\\",
+        "outputPath": "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\ListoAPI.Aplication\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -33,8 +33,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\UTP\\IntegradorII\\listo-backend\\BackListo\\ListoAPI.DTO\\ListoAPI.DTO.csproj": {
-                "projectPath": "D:\\UTP\\IntegradorII\\listo-backend\\BackListo\\ListoAPI.DTO\\ListoAPI.DTO.csproj"
+              "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\ListoAPI.DTO\\ListoAPI.DTO.csproj": {
+                "projectPath": "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\ListoAPI.DTO\\ListoAPI.DTO.csproj"
               }
             }
           }
@@ -92,14 +92,14 @@
         }
       }
     },
-    "D:\\UTP\\IntegradorII\\listo-backend\\BackListo\\ListoAPI.DTO\\ListoAPI.DTO.csproj": {
+    "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\ListoAPI.DTO\\ListoAPI.DTO.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\UTP\\IntegradorII\\listo-backend\\BackListo\\ListoAPI.DTO\\ListoAPI.DTO.csproj",
+        "projectUniqueName": "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\ListoAPI.DTO\\ListoAPI.DTO.csproj",
         "projectName": "ListoAPI.DTO",
-        "projectPath": "D:\\UTP\\IntegradorII\\listo-backend\\BackListo\\ListoAPI.DTO\\ListoAPI.DTO.csproj",
+        "projectPath": "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\ListoAPI.DTO\\ListoAPI.DTO.csproj",
         "packagesPath": "C:\\Users\\luisa\\.nuget\\packages\\",
-        "outputPath": "D:\\UTP\\IntegradorII\\listo-backend\\BackListo\\ListoAPI.DTO\\obj\\",
+        "outputPath": "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\ListoAPI.DTO\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -158,14 +158,14 @@
         }
       }
     },
-    "D:\\UTP\\IntegradorII\\listo-backend\\BackListo\\listoweb.api\\ListoAPI.API.csproj": {
+    "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\ListoWeb.API\\ListoAPI.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\UTP\\IntegradorII\\listo-backend\\BackListo\\listoweb.api\\ListoAPI.API.csproj",
+        "projectUniqueName": "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\ListoWeb.API\\ListoAPI.API.csproj",
         "projectName": "ListoAPI.API",
-        "projectPath": "D:\\UTP\\IntegradorII\\listo-backend\\BackListo\\listoweb.api\\ListoAPI.API.csproj",
+        "projectPath": "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\ListoWeb.API\\ListoAPI.API.csproj",
         "packagesPath": "C:\\Users\\luisa\\.nuget\\packages\\",
-        "outputPath": "D:\\UTP\\IntegradorII\\listo-backend\\BackListo\\listoweb.api\\obj\\",
+        "outputPath": "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\ListoWeb.API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -187,8 +187,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\UTP\\IntegradorII\\listo-backend\\BackListo\\ListoAPI.Aplication\\ListoAPI.Aplication.csproj": {
-                "projectPath": "D:\\UTP\\IntegradorII\\listo-backend\\BackListo\\ListoAPI.Aplication\\ListoAPI.Aplication.csproj"
+              "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\ListoAPI.Aplication\\ListoAPI.Aplication.csproj": {
+                "projectPath": "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\ListoAPI.Aplication\\ListoAPI.Aplication.csproj"
               }
             }
           }

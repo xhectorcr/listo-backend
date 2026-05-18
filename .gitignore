@@ -1,0 +1,37 @@
+# ==========================================
+# Archivos de compilación de .NET
+# ==========================================
+[Bb]in/
+[Oo]bj/
+*.pdb
+*.dll
+*.exe
+*.cache
+project.lock.json
+project.assets.json
+
+# ==========================================
+# Configuración de Editores (Visual Studio / VS Code)
+# ==========================================
+.vs/
+.vscode/
+*.user
+*.suo
+*.rsuser
+*.suo
+*.userosscache
+*.sln.docstates
+
+# ==========================================
+# Archivos de entorno y logs (Opcional pero recomendado)
+# ==========================================
+*.log
+# Si manejas secretos locales o cadenas de conexión a tu SQL Server local
+appsettings.Development.json
+appsettings.local.json
+
+# ==========================================
+# Archivos del Sistema Operativo
+# ==========================================
+.DS_Store
+Thumbs.db
