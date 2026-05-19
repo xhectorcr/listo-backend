@@ -30,5 +30,8 @@ namespace ListoAPI.Aplication.Core.Entities
         [Column("estado")]
         public bool Estado {get;set;}
 
+        [ForeignKey("IdUsuario")]
+public virtual Usuario Usuario { get; set; }
+
     }
 }
