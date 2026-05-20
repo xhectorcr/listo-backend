@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ListoAPI.Aplication")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2c3008386a5a9511f977d3dff97432b69df941b9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f8a03708f874467e57005744835a69f10d616a0e")]
 [assembly: System.Reflection.AssemblyProductAttribute("ListoAPI.Aplication")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ListoAPI.Aplication")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

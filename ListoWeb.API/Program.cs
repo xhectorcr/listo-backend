@@ -10,6 +10,42 @@ using Microsoft.IdentityModel.Tokens;
 DotNetEnv.Env.Load();
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Robustez para cargar variables de entorno en Render/Linux
+var jwtKey = builder.Configuration["Jwt:Key"];
+if (string.IsNullOrEmpty(jwtKey))
+{
+    jwtKey = Environment.GetEnvironmentVariable("Jwt__Key") 
+             ?? Environment.GetEnvironmentVariable("JWT_KEY")
+             ?? Environment.GetEnvironmentVariable("Jwt_Key")
+             ?? "DefaultSecretKeyForListoAPI2026!!!";
+    builder.Configuration["Jwt:Key"] = jwtKey;
+}
+
+var connString = builder.Configuration.GetConnectionString("ListoBD");
+if (string.IsNullOrEmpty(connString))
+{
+    connString = Environment.GetEnvironmentVariable("ConnectionStrings__ListoBD")
+                 ?? Environment.GetEnvironmentVariable("CONNECTIONSTRINGS__LISTOBD")
+                 ?? Environment.GetEnvironmentVariable("ConnectionStrings_ListoBD");
+    if (!string.IsNullOrEmpty(connString))
+    {
+        builder.Configuration["ConnectionStrings:ListoBD"] = connString;
+    }
+}
+
+var emailPass = builder.Configuration["EmailSettings:Password"];
+if (string.IsNullOrEmpty(emailPass))
+{
+    emailPass = Environment.GetEnvironmentVariable("EmailSettings__Password")
+                ?? Environment.GetEnvironmentVariable("EmailSettings_Password")
+                ?? Environment.GetEnvironmentVariable("EMAILSETTINGS__PASSWORD");
+    if (!string.IsNullOrEmpty(emailPass))
+    {
+        builder.Configuration["EmailSettings:Password"] = emailPass;
+    }
+}
+
 builder.Services.AddControllers();
 builder.Services.AddMemoryCache();
 builder.Services.AddEndpointsApiExplorer();
@@ -47,7 +83,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateIssuerSigningKey = true,
             ValidIssuer = builder.Configuration["Jwt:Issuer"],
             ValidAudience = builder.Configuration["Jwt:Audience"],
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
         };
     });
 
