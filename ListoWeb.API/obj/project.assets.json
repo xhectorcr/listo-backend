@@ -15,7 +15,6 @@
           }
         }
       },
-<<<<<<< HEAD
       "DotNetEnv/3.2.0": {
         "type": "package",
         "dependencies": {
@@ -28,7 +27,8 @@
         },
         "runtime": {
           "lib/netstandard2.0/DotNetEnv.dll": {}
-=======
+        }
+      },
       "Humanizer.Core/2.14.1": {
         "type": "package",
         "compile": {
@@ -40,7 +40,6 @@
           "lib/net6.0/Humanizer.dll": {
             "related": ".xml"
           }
->>>>>>> luis
         }
       },
       "Microsoft.AspNetCore.Authentication.JwtBearer/8.0.0": {
@@ -1204,7 +1203,6 @@
         "readme.md"
       ]
     },
-<<<<<<< HEAD
     "DotNetEnv/3.2.0": {
       "sha512": "2q+PD+aJcRW9QuRcIv4F8WbvEDxI6cwxzZJec2i45cBY4cAKCAoW4ZPkApJ7H82wr6Yfmxx/0kb1nLnRmZrGZA==",
       "type": "package",
@@ -1217,7 +1215,8 @@
         "dotnetenv.3.2.0.nupkg.sha512",
         "dotnetenv.nuspec",
         "lib/netstandard2.0/DotNetEnv.dll"
-=======
+      ]
+    },
     "Humanizer.Core/2.14.1": {
       "sha512": "lQKvtaTDOXnoVJ20ibTuSIOf2i0uO0MPbDhd1jm238I+U/2ZnRENj0cktKZhtchBMtCUSRQ5v4xBCUbKNmyVMw==",
       "type": "package",
@@ -1234,7 +1233,6 @@
         "lib/netstandard2.0/Humanizer.dll",
         "lib/netstandard2.0/Humanizer.xml",
         "logo.png"
->>>>>>> luis
       ]
     },
     "Microsoft.AspNetCore.Authentication.JwtBearer/8.0.0": {
@@ -3218,19 +3216,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\LENOVO\\Documents\\Proyectos\\Universidad\\integrador-ii\\listo-backend\\ListoWeb.API\\ListoAPI.API.csproj",
       "projectName": "ListoAPI.API",
       "projectPath": "C:\\Users\\LENOVO\\Documents\\Proyectos\\Universidad\\integrador-ii\\listo-backend\\ListoWeb.API\\ListoAPI.API.csproj",
       "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\LENOVO\\Documents\\Proyectos\\Universidad\\integrador-ii\\listo-backend\\ListoWeb.API\\obj\\",
-=======
-      "projectUniqueName": "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\ListoWeb.API\\ListoAPI.API.csproj",
-      "projectName": "ListoAPI.API",
-      "projectPath": "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\ListoWeb.API\\ListoAPI.API.csproj",
-      "packagesPath": "C:\\Users\\luisa\\.nuget\\packages\\",
-      "outputPath": "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\ListoWeb.API\\obj\\",
->>>>>>> luis
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -3245,13 +3235,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-<<<<<<< HEAD
             "C:\\Users\\LENOVO\\Documents\\Proyectos\\Universidad\\integrador-ii\\listo-backend\\ListoAPI.Aplication\\ListoAPI.Aplication.csproj": {
               "projectPath": "C:\\Users\\LENOVO\\Documents\\Proyectos\\Universidad\\integrador-ii\\listo-backend\\ListoAPI.Aplication\\ListoAPI.Aplication.csproj"
-=======
-            "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\ListoAPI.Aplication\\ListoAPI.Aplication.csproj": {
-              "projectPath": "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\ListoAPI.Aplication\\ListoAPI.Aplication.csproj"
->>>>>>> luis
             }
           }
         }

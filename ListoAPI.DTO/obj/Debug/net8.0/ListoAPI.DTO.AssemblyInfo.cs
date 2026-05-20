@@ -13,11 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ListoAPI.DTO")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-<<<<<<< HEAD
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3e21ede389fe38b6beaf62f1e74145f94e1d8cb6")]
-=======
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4f6ead06971fe4c952f0361685b49a228733a692")]
->>>>>>> luis
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2c3008386a5a9511f977d3dff97432b69df941b9")]
 [assembly: System.Reflection.AssemblyProductAttribute("ListoAPI.DTO")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ListoAPI.DTO")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

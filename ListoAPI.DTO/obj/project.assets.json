@@ -13,19 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\LENOVO\\Documents\\Proyectos\\Universidad\\integrador-ii\\listo-backend\\ListoAPI.DTO\\ListoAPI.DTO.csproj",
       "projectName": "ListoAPI.DTO",
       "projectPath": "C:\\Users\\LENOVO\\Documents\\Proyectos\\Universidad\\integrador-ii\\listo-backend\\ListoAPI.DTO\\ListoAPI.DTO.csproj",
       "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\LENOVO\\Documents\\Proyectos\\Universidad\\integrador-ii\\listo-backend\\ListoAPI.DTO\\obj\\",
-=======
-      "projectUniqueName": "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\ListoAPI.DTO\\ListoAPI.DTO.csproj",
-      "projectName": "ListoAPI.DTO",
-      "projectPath": "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\ListoAPI.DTO\\ListoAPI.DTO.csproj",
-      "packagesPath": "C:\\Users\\luisa\\.nuget\\packages\\",
-      "outputPath": "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\ListoAPI.DTO\\obj\\",
->>>>>>> luis
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config"
