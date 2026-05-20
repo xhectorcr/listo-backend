@@ -15,6 +15,8 @@ namespace ListoAPI.Aplication.Infrastructure.Data
         public DbSet<Categoria> CATEGORIA { get; set; }
 
         public DbSet<Producto> PRODUCTO {get;set;}
+        
+        public DbSet<MetodoPago> METODOPAGO {get;set;}
        
     }
     

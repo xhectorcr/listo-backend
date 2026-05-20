@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "C:\\Users\\LENOVO\\Documents\\Proyectos\\Universidad\\integrador-ii\\listo-backend\\ListoWeb.API\\ListoAPI.API.csproj": {}
   },
   "projects": {
@@ -12,6 +13,19 @@
         "projectPath": "C:\\Users\\LENOVO\\Documents\\Proyectos\\Universidad\\integrador-ii\\listo-backend\\ListoAPI.Aplication\\ListoAPI.Aplication.csproj",
         "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\LENOVO\\Documents\\Proyectos\\Universidad\\integrador-ii\\listo-backend\\ListoAPI.Aplication\\obj\\",
+=======
+    "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\listoweb.api\\ListoAPI.API.csproj": {}
+  },
+  "projects": {
+    "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\ListoAPI.Aplication\\ListoAPI.Aplication.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\ListoAPI.Aplication\\ListoAPI.Aplication.csproj",
+        "projectName": "ListoAPI.Aplication",
+        "projectPath": "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\ListoAPI.Aplication\\ListoAPI.Aplication.csproj",
+        "packagesPath": "C:\\Users\\luisa\\.nuget\\packages\\",
+        "outputPath": "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\ListoAPI.Aplication\\obj\\",
+>>>>>>> luis
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -26,8 +40,13 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
+<<<<<<< HEAD
               "C:\\Users\\LENOVO\\Documents\\Proyectos\\Universidad\\integrador-ii\\listo-backend\\ListoAPI.DTO\\ListoAPI.DTO.csproj": {
                 "projectPath": "C:\\Users\\LENOVO\\Documents\\Proyectos\\Universidad\\integrador-ii\\listo-backend\\ListoAPI.DTO\\ListoAPI.DTO.csproj"
+=======
+              "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\ListoAPI.DTO\\ListoAPI.DTO.csproj": {
+                "projectPath": "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\ListoAPI.DTO\\ListoAPI.DTO.csproj"
+>>>>>>> luis
               }
             }
           }
@@ -54,11 +73,15 @@
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[9.0.1, )"
+              "version": "[8.0.4, )"
             },
             "Microsoft.Extensions.Configuration": {
               "target": "Package",
-              "version": "[9.0.1, )"
+              "version": "[8.0.0, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[8.0.4, )"
             },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
@@ -99,6 +122,7 @@
         }
       }
     },
+<<<<<<< HEAD
     "C:\\Users\\LENOVO\\Documents\\Proyectos\\Universidad\\integrador-ii\\listo-backend\\ListoAPI.DTO\\ListoAPI.DTO.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -107,6 +131,16 @@
         "projectPath": "C:\\Users\\LENOVO\\Documents\\Proyectos\\Universidad\\integrador-ii\\listo-backend\\ListoAPI.DTO\\ListoAPI.DTO.csproj",
         "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\LENOVO\\Documents\\Proyectos\\Universidad\\integrador-ii\\listo-backend\\ListoAPI.DTO\\obj\\",
+=======
+    "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\ListoAPI.DTO\\ListoAPI.DTO.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\ListoAPI.DTO\\ListoAPI.DTO.csproj",
+        "projectName": "ListoAPI.DTO",
+        "projectPath": "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\ListoAPI.DTO\\ListoAPI.DTO.csproj",
+        "packagesPath": "C:\\Users\\luisa\\.nuget\\packages\\",
+        "outputPath": "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\ListoAPI.DTO\\obj\\",
+>>>>>>> luis
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -172,6 +206,7 @@
         }
       }
     },
+<<<<<<< HEAD
     "C:\\Users\\LENOVO\\Documents\\Proyectos\\Universidad\\integrador-ii\\listo-backend\\ListoWeb.API\\ListoAPI.API.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -180,6 +215,16 @@
         "projectPath": "C:\\Users\\LENOVO\\Documents\\Proyectos\\Universidad\\integrador-ii\\listo-backend\\ListoWeb.API\\ListoAPI.API.csproj",
         "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\LENOVO\\Documents\\Proyectos\\Universidad\\integrador-ii\\listo-backend\\ListoWeb.API\\obj\\",
+=======
+    "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\listoweb.api\\ListoAPI.API.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\listoweb.api\\ListoAPI.API.csproj",
+        "projectName": "ListoAPI.API",
+        "projectPath": "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\listoweb.api\\ListoAPI.API.csproj",
+        "packagesPath": "C:\\Users\\luisa\\.nuget\\packages\\",
+        "outputPath": "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\listoweb.api\\obj\\",
+>>>>>>> luis
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -194,8 +239,13 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
+<<<<<<< HEAD
               "C:\\Users\\LENOVO\\Documents\\Proyectos\\Universidad\\integrador-ii\\listo-backend\\ListoAPI.Aplication\\ListoAPI.Aplication.csproj": {
                 "projectPath": "C:\\Users\\LENOVO\\Documents\\Proyectos\\Universidad\\integrador-ii\\listo-backend\\ListoAPI.Aplication\\ListoAPI.Aplication.csproj"
+=======
+              "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\ListoAPI.Aplication\\ListoAPI.Aplication.csproj": {
+                "projectPath": "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\ListoAPI.Aplication\\ListoAPI.Aplication.csproj"
+>>>>>>> luis
               }
             }
           }
@@ -224,9 +274,15 @@
               "target": "Package",
               "version": "[8.0.0, )"
             },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.4, )"
+            },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
-              "version": "[9.0.1, )"
+              "version": "[8.0.4, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

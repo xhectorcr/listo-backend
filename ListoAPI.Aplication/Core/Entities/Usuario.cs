@@ -33,5 +33,10 @@ namespace ListoAPI.Aplication.Core.Entities
 
         [Column("estado")]
         public bool Estado { get; set; } = true;
+
+
+        // --- CONSTRAINT AGREGADO ---
+        [ForeignKey("IdRol")]
+        public virtual Rol? Rol { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "qLz7w+E8uys=",
   "success": true,
   "projectFilePath": "C:\\Users\\LENOVO\\Documents\\Proyectos\\Universidad\\integrador-ii\\listo-backend\\ListoAPI.Aplication\\ListoAPI.Aplication.csproj",
@@ -27,6 +28,34 @@
     "C:\\Users\\LENOVO\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.26\\microsoft.netcore.app.ref.8.0.26.nupkg.sha512",
     "C:\\Users\\LENOVO\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.26\\microsoft.windowsdesktop.app.ref.8.0.26.nupkg.sha512",
     "C:\\Users\\LENOVO\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.26\\microsoft.aspnetcore.app.ref.8.0.26.nupkg.sha512"
+=======
+  "dgSpecHash": "JAvADis+Gp4=",
+  "success": true,
+  "projectFilePath": "D:\\UTP\\IntegradorII\\nuevoBack\\listo-backend\\ListoAPI.Aplication\\ListoAPI.Aplication.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\luisa\\.nuget\\packages\\bcrypt.net-next\\4.1.0\\bcrypt.net-next.4.1.0.nupkg.sha512",
+    "C:\\Users\\luisa\\.nuget\\packages\\microsoft.entityframeworkcore\\8.0.4\\microsoft.entityframeworkcore.8.0.4.nupkg.sha512",
+    "C:\\Users\\luisa\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\8.0.4\\microsoft.entityframeworkcore.abstractions.8.0.4.nupkg.sha512",
+    "C:\\Users\\luisa\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\8.0.4\\microsoft.entityframeworkcore.analyzers.8.0.4.nupkg.sha512",
+    "C:\\Users\\luisa\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\8.0.4\\microsoft.entityframeworkcore.relational.8.0.4.nupkg.sha512",
+    "C:\\Users\\luisa\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\8.0.0\\microsoft.extensions.caching.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\luisa\\.nuget\\packages\\microsoft.extensions.caching.memory\\8.0.0\\microsoft.extensions.caching.memory.8.0.0.nupkg.sha512",
+    "C:\\Users\\luisa\\.nuget\\packages\\microsoft.extensions.configuration\\8.0.0\\microsoft.extensions.configuration.8.0.0.nupkg.sha512",
+    "C:\\Users\\luisa\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\8.0.0\\microsoft.extensions.configuration.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\luisa\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\8.0.0\\microsoft.extensions.dependencyinjection.8.0.0.nupkg.sha512",
+    "C:\\Users\\luisa\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\luisa\\.nuget\\packages\\microsoft.extensions.logging\\8.0.0\\microsoft.extensions.logging.8.0.0.nupkg.sha512",
+    "C:\\Users\\luisa\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\8.0.0\\microsoft.extensions.logging.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\luisa\\.nuget\\packages\\microsoft.extensions.options\\8.0.0\\microsoft.extensions.options.8.0.0.nupkg.sha512",
+    "C:\\Users\\luisa\\.nuget\\packages\\microsoft.extensions.primitives\\8.0.0\\microsoft.extensions.primitives.8.0.0.nupkg.sha512",
+    "C:\\Users\\luisa\\.nuget\\packages\\microsoft.identitymodel.abstractions\\8.17.0\\microsoft.identitymodel.abstractions.8.17.0.nupkg.sha512",
+    "C:\\Users\\luisa\\.nuget\\packages\\microsoft.identitymodel.jsonwebtokens\\8.17.0\\microsoft.identitymodel.jsonwebtokens.8.17.0.nupkg.sha512",
+    "C:\\Users\\luisa\\.nuget\\packages\\microsoft.identitymodel.logging\\8.17.0\\microsoft.identitymodel.logging.8.17.0.nupkg.sha512",
+    "C:\\Users\\luisa\\.nuget\\packages\\microsoft.identitymodel.tokens\\8.17.0\\microsoft.identitymodel.tokens.8.17.0.nupkg.sha512",
+    "C:\\Users\\luisa\\.nuget\\packages\\npgsql\\8.0.3\\npgsql.8.0.3.nupkg.sha512",
+    "C:\\Users\\luisa\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\8.0.4\\npgsql.entityframeworkcore.postgresql.8.0.4.nupkg.sha512",
+    "C:\\Users\\luisa\\.nuget\\packages\\system.identitymodel.tokens.jwt\\8.17.0\\system.identitymodel.tokens.jwt.8.17.0.nupkg.sha512"
+>>>>>>> luis
   ],
   "logs": []
 }

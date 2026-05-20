@@ -35,5 +35,11 @@ namespace ListoAPI.Aplication.Core.Entities
         [Column("id_categoria")] 
         public int IdCategoria { get; set; }
 
+        // --- CONSTRAINT AGREGADO ---
+        [ForeignKey("IdCategoria")]
+        public virtual Categoria Categoria { get; set; }
+
+        
+
     }
 }
