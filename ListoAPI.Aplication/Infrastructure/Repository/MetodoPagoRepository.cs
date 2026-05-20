@@ -71,7 +71,7 @@ namespace ListoAPI.Aplication.Infrastructure.Repository
                 metodoPago.IdMetodoPago = pItem.IdMetodoPago;
                 metodoPago.IdUsuario = pItem.IdUsuario;
                 metodoPago.TokenSimulado = pItem.TokenSimulado;
-                metodoPago.UltimosDigitos = pItem.TokenSimulado;
+                metodoPago.UltimosDigitos = pItem.UltimosDigitos;
                 metodoPago.Saldo = pItem.Saldo;
                 metodoPago.MarcaTarjeta = pItem.MarcaTarjeta;
                 metodoPago.Estado = pItem.Estado;

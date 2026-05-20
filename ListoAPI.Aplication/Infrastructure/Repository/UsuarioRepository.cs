@@ -189,6 +189,7 @@ namespace ListoAPI.Aplication.Infrastructure.Repository
             new Claim(ClaimTypes.Name, query.Usuario.Nombre),
             new Claim(ClaimTypes.Email, query.Usuario.Correo),
             new Claim(ClaimTypes.Role, query.NombreRol) // Aquí usamos el JOIN
+            
         };
 
                 var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
@@ -215,7 +216,8 @@ namespace ListoAPI.Aplication.Infrastructure.Repository
                     {
                         token = tokenString,
                         usuario = query.Usuario.Nombre,
-                        rol = query.NombreRol
+                        rol = query.NombreRol,
+                        idUsuario = query.Usuario.IdUsuario.ToString(),
                     }
                 };
             }
