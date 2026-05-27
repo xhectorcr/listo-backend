@@ -20,11 +20,17 @@ namespace ListoAPI.Aplication.Infrastructure.Services
         {
             var emailEmisor = _config["EmailSettings:Email"];
             
-            // Leemos el password de la configuración, y si no está, buscamos en la variable de entorno directamente (para Render)
-            var password = _config["EmailSettings:Password"] 
-                        ?? Environment.GetEnvironmentVariable("EmailSettings__Password")
-                        ?? Environment.GetEnvironmentVariable("EmailSettings_Password")
-                        ?? Environment.GetEnvironmentVariable("EMAILSETTINGS__PASSWORD");
+            // Leemos el password de la configuración, y si está vacío, buscamos en la variable de entorno
+            var password = _config["EmailSettings:Password"];
+            if (string.IsNullOrWhiteSpace(password))
+            {
+                password = Environment.GetEnvironmentVariable("EmailSettings__Password")
+                            ?? Environment.GetEnvironmentVariable("EmailSettings_Password")
+                            ?? Environment.GetEnvironmentVariable("EMAILSETTINGS__PASSWORD");
+            }
+            
+            // Limpiar espacios accidentales (muy común al copiar y pegar)
+            password = password?.Trim();
                         
             var host = _config["EmailSettings:Host"];
             
@@ -46,6 +52,8 @@ namespace ListoAPI.Aplication.Infrastructure.Services
 
             using (var smtpClient = new SmtpClient(host, port))
             {
+                // Es IMPORTANTE asignar esto en false antes de asignar las credenciales
+                smtpClient.UseDefaultCredentials = false; 
                 smtpClient.Credentials = new NetworkCredential(emailEmisor, password);
                 smtpClient.EnableSsl = true;
                 

@@ -80,7 +80,8 @@ namespace ListoAPI.API.Controllers
                 catch (Exception ex)
                 {
                     // Registramos el error pero no impedimos que se retorne Ok
-                    Console.WriteLine($"Error al enviar correos de bienvenida: {ex.Message}");
+                    var innerMsg = ex.InnerException != null ? ex.InnerException.Message : "No hay detalles adicionales";
+                    Console.WriteLine($"Error al enviar correos de bienvenida: {ex.Message}. Detalle interno: {innerMsg}");
                 }
 
                 return Ok(resultado);
