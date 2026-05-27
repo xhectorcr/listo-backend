@@ -14,11 +14,13 @@ namespace ListoAPI.API.Controllers
     {
         private readonly IUsuarioRepository _usuarioRepository;
         private readonly IMemoryCache _cache;
+        private readonly IEmailService _emailService;
 
-        public UsuarioController(IUsuarioRepository usuarioRepository, IMemoryCache cache)
+        public UsuarioController(IUsuarioRepository usuarioRepository, IMemoryCache cache, IEmailService emailService)
         {
             _usuarioRepository = usuarioRepository;
             _cache = cache;
+            _emailService = emailService;
         }
 
         [AllowAnonymous]
@@ -55,6 +57,32 @@ namespace ListoAPI.API.Controllers
 
             if (resultado.success)
             {
+                try 
+                {
+                    // 1. Correo de Confirmación de Cuenta
+                    var asuntoBienvenida = "¡Bienvenido a Listo! Tu cuenta ha sido creada";
+                    var cuerpoBienvenida = $@"
+                        <h1>¡Hola {pItem.Nombre}!</h1>
+                        <p>Tu cuenta en Listo ha sido creada exitosamente.</p>
+                        <p>Ya puedes empezar a disfrutar de nuestros servicios.</p>";
+                    
+                    // 2. Correo de Cupón de Descuento
+                    var asuntoCupon = "🎁 Tu cupón de 15% de descuento está aquí";
+                    var cuerpoCupon = $@"
+                        <h1>¡Gracias por registrarte en Listo!</h1>
+                        <p>Como prometimos, aquí tienes tu código de descuento para tu primera compra:</p>
+                        <h2 style='color: #2e7d32;'>BIENVENIDA15</h2>
+                        <p>¡Esperamos verte pronto!</p>";
+
+                    await _emailService.EnviarCorreoAsync(pItem.Correo, asuntoBienvenida, cuerpoBienvenida);
+                    await _emailService.EnviarCorreoAsync(pItem.Correo, asuntoCupon, cuerpoCupon);
+                }
+                catch (Exception ex)
+                {
+                    // Registramos el error pero no impedimos que se retorne Ok
+                    Console.WriteLine($"Error al enviar correos de bienvenida: {ex.Message}");
+                }
+
                 return Ok(resultado);
             }
 
@@ -197,7 +225,5 @@ namespace ListoAPI.API.Controllers
 
 
     }
-
-
 
 }

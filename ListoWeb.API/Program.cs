@@ -3,6 +3,7 @@ using ListoWeb.API.Data; // Importar el Inicializador
 using ListoAPI.Aplication.Core.Interfaces;
 using ListoAPI.Aplication.Infrastructure.Data;
 using ListoAPI.Aplication.Infrastructure.Repository;
+using ListoAPI.Aplication.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -71,6 +72,7 @@ builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<ICategoriaRepository, CategoriaRepository>();
 builder.Services.AddScoped<IProductoRepository, ProductoRepository>();
 builder.Services.AddScoped<IMetodoPagoRepository, MetodoPagoRepository>();
+builder.Services.AddScoped<IEmailService, EmailService>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
