@@ -60,19 +60,44 @@ namespace ListoAPI.API.Controllers
                 try 
                 {
                     // 1. Correo de Confirmación de Cuenta
-                    var asuntoBienvenida = "¡Bienvenido a Listo! Tu cuenta ha sido creada";
+                    var asuntoBienvenida = "¡Bienvenido a Listo GO! Tu cuenta ha sido creada";
                     var cuerpoBienvenida = $@"
-                        <h1>¡Hola {pItem.Nombre}!</h1>
-                        <p>Tu cuenta en Listo ha sido creada exitosamente.</p>
-                        <p>Ya puedes empezar a disfrutar de nuestros servicios.</p>";
+                        <div style=""font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 8px; border: 1px solid #e0e0e0; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-align: center;"">
+                            <div style=""background-color: #FF6B00; padding: 25px 0;"">
+                                <h1 style=""color: #ffffff; margin: 0; font-size: 36px; letter-spacing: 1px; font-weight: 900;"">Listo GO!</h1>
+                            </div>
+                            <div style=""padding: 40px 30px;"">
+                                <h2 style=""color: #333333; margin-top: 0; font-size: 24px;"">¡Hola {pItem.Nombre}! 👋</h2>
+                                <p style=""color: #555555; font-size: 16px; line-height: 1.6; margin: 20px 0;"">Tu cuenta ha sido creada exitosamente.</p>
+                                <p style=""color: #555555; font-size: 16px; line-height: 1.6; margin: 20px 0;"">Estamos muy emocionados de tenerte con nosotros. Ya puedes empezar a disfrutar de todos nuestros servicios y beneficios exclusivos.</p>
+                                <a href=""#"" style=""display: inline-block; background-color: #FF6B00; color: #ffffff; text-decoration: none; padding: 14px 30px; border-radius: 25px; font-weight: bold; font-size: 16px; margin-top: 20px;"">Comenzar ahora</a>
+                            </div>
+                            <div style=""background-color: #f5f5f5; padding: 15px; color: #888888; font-size: 12px;"">
+                                <p style=""margin: 0;"">© 2026 Listo GO!. Todos los derechos reservados.</p>
+                            </div>
+                        </div>";
                     
                     // 2. Correo de Cupón de Descuento
                     var asuntoCupon = "🎁 Tu cupón de 15% de descuento está aquí";
                     var cuerpoCupon = $@"
-                        <h1>¡Gracias por registrarte en Listo!</h1>
-                        <p>Como prometimos, aquí tienes tu código de descuento para tu primera compra:</p>
-                        <h2 style='color: #2e7d32;'>BIENVENIDA15</h2>
-                        <p>¡Esperamos verte pronto!</p>";
+                        <div style=""font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 8px; border: 1px solid #e0e0e0; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-align: center;"">
+                            <div style=""background-color: #FF6B00; padding: 25px 0;"">
+                                <h1 style=""color: #ffffff; margin: 0; font-size: 36px; letter-spacing: 1px; font-weight: 900;"">Listo GO!</h1>
+                            </div>
+                            <div style=""padding: 40px 30px;"">
+                                <h2 style=""color: #333333; margin-top: 0; font-size: 24px;"">¡Gracias por unirte! 🎁</h2>
+                                <p style=""color: #555555; font-size: 16px; line-height: 1.6; margin: 20px 0;"">Como lo prometimos, aquí tienes tu código de descuento especial para tu primera compra:</p>
+                                
+                                <div style=""margin: 30px auto; padding: 20px; border: 2px dashed #FF6B00; border-radius: 8px; background-color: #fff3e0; display: inline-block;"">
+                                    <h2 style=""color: #FF6B00; margin: 0; font-size: 32px; letter-spacing: 4px; font-family: monospace; font-weight: bold;"">BIENVENIDA15</h2>
+                                </div>
+                                
+                                <p style=""color: #555555; font-size: 16px; line-height: 1.6; margin: 20px 0;"">¡Aplica este código en el carrito de compras y disfruta de un <strong style=""color: #FF6B00;"">15% de descuento</strong>!</p>
+                            </div>
+                            <div style=""background-color: #f5f5f5; padding: 15px; color: #888888; font-size: 12px;"">
+                                <p style=""margin: 0;"">© 2026 Listo GO!. Todos los derechos reservados.</p>
+                            </div>
+                        </div>";
 
                     await _emailService.EnviarCorreoAsync(pItem.Correo, asuntoBienvenida, cuerpoBienvenida);
                     await _emailService.EnviarCorreoAsync(pItem.Correo, asuntoCupon, cuerpoCupon);
