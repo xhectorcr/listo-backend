@@ -1,12 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "EE0SWOR5cGw=",
+  "dgSpecHash": "eezungt6QJQ=",
   "success": true,
-  "projectFilePath": "C:\\Users\\LENOVO\\Documents\\Proyectos\\Universidad\\integrador-ii\\listo-backend\\ListoAPI.DTO\\ListoAPI.DTO.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\LENOVO\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.26\\microsoft.netcore.app.ref.8.0.26.nupkg.sha512",
-    "C:\\Users\\LENOVO\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.26\\microsoft.windowsdesktop.app.ref.8.0.26.nupkg.sha512",
-    "C:\\Users\\LENOVO\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.26\\microsoft.aspnetcore.app.ref.8.0.26.nupkg.sha512"
-  ],
+  "projectFilePath": "C:\\Users\\angel\\Documents\\Listo_project\\listo-backend\\ListoAPI.DTO\\ListoAPI.DTO.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }

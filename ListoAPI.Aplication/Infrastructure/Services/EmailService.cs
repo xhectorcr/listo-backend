@@ -1,9 +1,10 @@
 using ListoAPI.Aplication.Core.Interfaces;
 using Microsoft.Extensions.Configuration;
 using System;
-using System.Net;
-using System.Net.Mail;
 using System.Threading.Tasks;
+using MailKit.Net.Smtp;
+using MailKit.Security;
+using MimeKit;
 
 namespace ListoAPI.Aplication.Infrastructure.Services
 {
@@ -18,9 +19,9 @@ namespace ListoAPI.Aplication.Infrastructure.Services
 
         public async Task EnviarCorreoAsync(string para, string asunto, string cuerpoHtml)
         {
-            var emailEmisor = _config["EmailSettings:Email"];
+            // Usaremos tu cuenta de Gmail original
+            var emailEmisor = _config["EmailSettings:Email"] ?? "angelinatipacti@gmail.com";
             
-            // Leemos el password de la configuración, y si está vacío, buscamos en la variable de entorno
             var password = _config["EmailSettings:Password"];
             if (string.IsNullOrWhiteSpace(password))
             {
@@ -28,37 +29,37 @@ namespace ListoAPI.Aplication.Infrastructure.Services
                             ?? Environment.GetEnvironmentVariable("EmailSettings_Password")
                             ?? Environment.GetEnvironmentVariable("EMAILSETTINGS__PASSWORD");
             }
-            
-            // Limpiar espacios accidentales (muy común al copiar y pegar)
             password = password?.Trim();
-                        
-            var host = _config["EmailSettings:Host"];
-            
-            // Si el puerto no está en appsettings, se asume un default (ej. 587)
+
+            var host = _config["EmailSettings:Host"] ?? "smtp.gmail.com";
             if (!int.TryParse(_config["EmailSettings:Port"], out int port))
             {
                 port = 587; 
             }
 
-            var mailMessage = new MailMessage
-            {
-                From = new MailAddress(emailEmisor, "Listo! GO"),
-                Subject = asunto,
-                Body = cuerpoHtml,
-                IsBodyHtml = true
-            };
+            // Construimos el mensaje con MimeKit
+            var message = new MimeMessage();
+            message.From.Add(new MailboxAddress("Listo! GO", emailEmisor));
+            message.To.Add(new MailboxAddress("", para)); // Se envía a cualquier correo
+            message.Subject = asunto;
 
-            mailMessage.To.Add(para);
+            var bodyBuilder = new BodyBuilder { HtmlBody = cuerpoHtml };
+            message.Body = bodyBuilder.ToMessageBody();
 
-            using (var smtpClient = new SmtpClient(host, port))
+            // Enviamos usando MailKit (que resuelve automáticamente el error de "Network unreachable" de IPv6)
+            using (var client = new SmtpClient())
             {
-                // Es IMPORTANTE asignar esto en false antes de asignar las credenciales
-                smtpClient.UseDefaultCredentials = false; 
-                smtpClient.Credentials = new NetworkCredential(emailEmisor, password);
-                smtpClient.EnableSsl = true;
+                // El socket interrumpe si tarda más de 10 segundos
+                client.Timeout = 10000;
                 
-                // Enviar de forma asincrónica
-                await smtpClient.SendMailAsync(mailMessage);
+                // Conectamos de forma segura
+                await client.ConnectAsync(host, port, SecureSocketOptions.StartTls);
+                
+                // Autenticación con tu clave generada de Google
+                await client.AuthenticateAsync(emailEmisor, password);
+                
+                await client.SendAsync(message);
+                await client.DisconnectAsync(true);
             }
         }
     }
