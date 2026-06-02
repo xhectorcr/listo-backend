@@ -223,9 +223,11 @@ namespace ListoAPI.Aplication.Infrastructure.Repository
                     message = "Bienvenido al sistema",
                     data = new
                     {
+                        id = query.Usuario.IdUsuario,
                         token = tokenString,
                         usuario = query.Usuario.Nombre,
-                        rol = query.NombreRol
+                        rol = query.NombreRol,
+
                     }
                 };
             }
