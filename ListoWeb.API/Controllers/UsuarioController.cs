@@ -195,7 +195,57 @@ namespace ListoAPI.API.Controllers
             return BadRequest(resultado);
         }
 
+        [AllowAnonymous]
+        [HttpPost("generar-pin/{idUsuario}")]
+        public async Task<IActionResult> GenerarPinTemporal(int idUsuario)
+        {
+            var resultado = await _usuarioRepository.GenerarPinTemporal(idUsuario);
+            return resultado.success ? Ok(resultado) : BadRequest(resultado);
+        }
 
+        [AllowAnonymous]
+        [HttpPost("validar-acceso")]
+        public async Task<IActionResult> ValidarAcceso([FromBody] ValidarAccesoRequestDTO request)
+        {
+            if (string.IsNullOrWhiteSpace(request.PinTemporal))
+                return BadRequest(new ResponseCommonDTO { success = false, message = "PIN obligatorio" });
+
+            var resultado = await _usuarioRepository.ValidarAcceso(request.PinTemporal);
+            return resultado.success ? Ok(resultado) : BadRequest(resultado);
+        }
+
+        [AllowAnonymous]
+        [HttpGet("esperando")]
+        public async Task<IActionResult> ObtenerUsuarioEsperando()
+        {
+            var usuario = await _usuarioRepository.ObtenerUsuarioEsperando();
+            if (usuario == null) return NotFound(new ResponseCommonDTO { success = false, message = "Nadie esperando" });
+            return Ok(new ResponseCommonDTO { success = true, data = usuario });
+        }
+
+        [AllowAnonymous]
+        [HttpGet("en-tienda")]
+        public async Task<IActionResult> ObtenerUsuariosEnTienda()
+        {
+            var usuarios = await _usuarioRepository.ObtenerUsuariosEnTienda();
+            return Ok(new ResponseCommonDTO { success = true, data = usuarios });
+        }
+
+        [AllowAnonymous]
+        [HttpPost("asignar-track")]
+        public async Task<IActionResult> AsignarTrack([FromBody] AsignarTrackRequestDTO request)
+        {
+            var resultado = await _usuarioRepository.AsignarTrack(request.IdUsuario, request.TrackId);
+            return resultado.success ? Ok(resultado) : BadRequest(resultado);
+        }
+
+        [AllowAnonymous]
+        [HttpPost("limpiar-tienda")]
+        public async Task<IActionResult> LimpiarTienda()
+        {
+            var resultado = await _usuarioRepository.LimpiarTienda();
+            return Ok(resultado);
+        }
     }
 
 

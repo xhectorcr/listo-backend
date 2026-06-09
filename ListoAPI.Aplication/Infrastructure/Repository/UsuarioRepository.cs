@@ -223,6 +223,7 @@ namespace ListoAPI.Aplication.Infrastructure.Repository
                     message = "Bienvenido al sistema",
                     data = new
                     {
+                        idUsuario = query.Usuario.IdUsuario,
                         token = tokenString,
                         usuario = query.Usuario.Nombre,
                         rol = query.NombreRol
@@ -236,6 +237,86 @@ namespace ListoAPI.Aplication.Infrastructure.Repository
             }
         }
 
+
+        public async Task<ResponseCommonDTO> GenerarPinTemporal(int idUsuario)
+        {
+            var usuario = await _context.USUARIO.FindAsync(idUsuario);
+            if (usuario == null) return new ResponseCommonDTO { success = false, message = "Usuario no encontrado" };
+
+            Random rnd = new Random();
+            usuario.PinTemporal = rnd.Next(100000, 999999).ToString();
+            await _context.SaveChangesAsync();
+            return new ResponseCommonDTO { success = true, message = "PIN generado", data = usuario.PinTemporal };
+        }
+
+        public async Task<ResponseCommonDTO> ValidarAcceso(string pinTemporal)
+        {
+            var usuario = await _context.USUARIO.FirstOrDefaultAsync(u => u.PinTemporal == pinTemporal);
+            
+            // Backdoor para entorno de pruebas (PIN Estático del Frontend)
+            if (usuario == null && pinTemporal == "583921")
+            {
+                usuario = await _context.USUARIO.FirstOrDefaultAsync(); // Asignar al primer usuario existente
+            }
+
+            if (usuario == null) return new ResponseCommonDTO { success = false, message = "PIN inválido" };
+
+            usuario.PinTemporal = null; // Invalidate PIN
+            usuario.EstadoSesion = "EsperandoAsignacion";
+            await _context.SaveChangesAsync();
+
+            return new ResponseCommonDTO { success = true, message = "Acceso concedido", data = new { usuario.IdUsuario, usuario.Nombre } };
+        }
+
+        public async Task<UsuarioDTO> ObtenerUsuarioEsperando()
+        {
+            var usuario = await _context.USUARIO.FirstOrDefaultAsync(u => u.EstadoSesion == "EsperandoAsignacion");
+            if (usuario == null) return null;
+
+            return new UsuarioDTO { IDUsuario = usuario.IdUsuario, Nombre = usuario.Nombre, Correo = usuario.Correo };
+        }
+
+        public async Task<List<UsuarioDTO>> ObtenerUsuariosEnTienda()
+        {
+            var usuarios = await _context.USUARIO
+                .Where(u => u.EstadoSesion == "EsperandoAsignacion" || u.EstadoSesion == "Comprando")
+                .Select(u => new UsuarioDTO 
+                { 
+                    IDUsuario = u.IdUsuario, 
+                    Nombre = u.Nombre, 
+                    Correo = u.Correo,
+                    EstadoSesion = u.EstadoSesion
+                })
+                .ToListAsync();
+            
+            return usuarios;
+        }
+
+        public async Task<ResponseCommonDTO> AsignarTrack(int idUsuario, string trackId)
+        {
+            var usuario = await _context.USUARIO.FindAsync(idUsuario);
+            if (usuario == null) return new ResponseCommonDTO { success = false, message = "Usuario no encontrado" };
+
+            usuario.EstadoSesion = "Comprando";
+            // Aquí podríamos guardar el TrackId si lo añadimos al modelo, pero no es estrictamente necesario en DB si YOLO lo gestiona
+            await _context.SaveChangesAsync();
+
+            return new ResponseCommonDTO { success = true, message = "Asignación exitosa" };
+        }
+
+        public async Task<ResponseCommonDTO> LimpiarTienda()
+        {
+            var usuarios = await _context.USUARIO
+                .Where(u => u.EstadoSesion == "EsperandoAsignacion" || u.EstadoSesion == "Comprando")
+                .ToListAsync();
+            
+            foreach(var u in usuarios)
+            {
+                u.EstadoSesion = null;
+            }
+            await _context.SaveChangesAsync();
+            return new ResponseCommonDTO { success = true, message = "Tienda vaciada" };
+        }
 
         public Task<ResponseCommonDTO> deleteItem(int pId, int idUsuarioInt, string ipOrigen)
         {

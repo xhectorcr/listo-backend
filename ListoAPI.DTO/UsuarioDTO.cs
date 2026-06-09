@@ -11,5 +11,17 @@ namespace ListoAPI.DTO
         public DateTime? FechaRegistro { get; set; }
         public string Telefono { get; set; }
         public bool Estado { get; set; } = true;
+        public string EstadoSesion { get; set; }
+    }
+
+    public class ValidarAccesoRequestDTO
+    {
+        public string PinTemporal { get; set; }
+    }
+
+    public class AsignarTrackRequestDTO
+    {
+        public int IdUsuario { get; set; }
+        public string TrackId { get; set; }
     }
 }

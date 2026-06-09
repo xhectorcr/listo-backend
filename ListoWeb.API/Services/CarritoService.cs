@@ -31,6 +31,22 @@ namespace ListoWeb.API.Services
             }
         }
 
+        public void RemoverProducto(int usuarioId, Producto producto)
+        {
+            if (_carritos.TryGetValue(usuarioId, out var carrito))
+            {
+                var itemExistente = carrito.FirstOrDefault(i => i.IdProducto == producto.IdProducto);
+                if (itemExistente != null)
+                {
+                    itemExistente.Cantidad--;
+                    if (itemExistente.Cantidad <= 0)
+                    {
+                        carrito.Remove(itemExistente);
+                    }
+                }
+            }
+        }
+
         public List<CarritoItemDTO> ObtenerCarrito(int usuarioId)
         {
             if (_carritos.TryGetValue(usuarioId, out var carrito))

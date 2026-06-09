@@ -15,5 +15,12 @@ namespace ListoAPI.Aplication.Core.Interfaces
         Task<ResponseCommonDTO> ValidarLogin(string correo, string password);
 
         Task<(List<UsuarioDTO> usuarios, int TotalCount)> GetUsuarioList(int pageNumber, int pageSize, string pSearch, int idRol);
+
+        Task<ResponseCommonDTO> GenerarPinTemporal(int idUsuario);
+        Task<ResponseCommonDTO> ValidarAcceso(string pinTemporal);
+        Task<UsuarioDTO> ObtenerUsuarioEsperando();
+        Task<List<UsuarioDTO>> ObtenerUsuariosEnTienda();
+        Task<ResponseCommonDTO> AsignarTrack(int idUsuario, string trackId);
+        Task<ResponseCommonDTO> LimpiarTienda();
     }
 }

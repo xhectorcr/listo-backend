@@ -33,6 +33,11 @@ namespace ListoAPI.Aplication.Core.Entities
 
         [Column("estado")]
         public bool Estado { get; set; } = true;
+        [Column("pin_temporal")]
+        public string? PinTemporal { get; set; }
+
+        [Column("estado_sesion")]
+        public string? EstadoSesion { get; set; }
 
 
         // --- CONSTRAINT AGREGADO ---
