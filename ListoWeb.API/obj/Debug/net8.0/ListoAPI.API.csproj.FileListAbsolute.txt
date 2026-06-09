@@ -249,3 +249,11 @@ C:\Users\angel\Documents\Listo_project\listo-backend\ListoWeb.API\obj\Debug\net8
 C:\Users\angel\Documents\Listo_project\listo-backend\ListoWeb.API\obj\Debug\net8.0\ListoAPI.API.pdb
 C:\Users\angel\Documents\Listo_project\listo-backend\ListoWeb.API\obj\Debug\net8.0\ListoAPI.API.genruntimeconfig.cache
 C:\Users\angel\Documents\Listo_project\listo-backend\ListoWeb.API\obj\Debug\net8.0\ref\ListoAPI.API.dll
+C:\Users\LENOVO\Documents\Proyectos\Universidad\integrador-ii\listo-backend\ListoWeb.API\bin\Debug\net8.0\BouncyCastle.Cryptography.dll
+C:\Users\LENOVO\Documents\Proyectos\Universidad\integrador-ii\listo-backend\ListoWeb.API\bin\Debug\net8.0\MailKit.dll
+C:\Users\LENOVO\Documents\Proyectos\Universidad\integrador-ii\listo-backend\ListoWeb.API\bin\Debug\net8.0\Microsoft.AspNetCore.WebUtilities.dll
+C:\Users\LENOVO\Documents\Proyectos\Universidad\integrador-ii\listo-backend\ListoWeb.API\bin\Debug\net8.0\Microsoft.Net.Http.Headers.dll
+C:\Users\LENOVO\Documents\Proyectos\Universidad\integrador-ii\listo-backend\ListoWeb.API\bin\Debug\net8.0\MimeKit.dll
+C:\Users\LENOVO\Documents\Proyectos\Universidad\integrador-ii\listo-backend\ListoWeb.API\bin\Debug\net8.0\Resend.dll
+C:\Users\LENOVO\Documents\Proyectos\Universidad\integrador-ii\listo-backend\ListoWeb.API\bin\Debug\net8.0\System.Security.Cryptography.Pkcs.dll
+C:\Users\LENOVO\Documents\Proyectos\Universidad\integrador-ii\listo-backend\ListoWeb.API\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Security.Cryptography.Pkcs.dll
