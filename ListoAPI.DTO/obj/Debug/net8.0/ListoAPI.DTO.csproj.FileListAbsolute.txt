@@ -10,3 +10,15 @@ C:\Users\LENOVO\Documents\Proyectos\Universidad\integrador-ii\listo-backend\List
 C:\Users\LENOVO\Documents\Proyectos\Universidad\integrador-ii\listo-backend\ListoAPI.DTO\obj\Debug\net8.0\refint\ListoAPI.DTO.dll
 C:\Users\LENOVO\Documents\Proyectos\Universidad\integrador-ii\listo-backend\ListoAPI.DTO\obj\Debug\net8.0\ListoAPI.DTO.pdb
 C:\Users\LENOVO\Documents\Proyectos\Universidad\integrador-ii\listo-backend\ListoAPI.DTO\obj\Debug\net8.0\ref\ListoAPI.DTO.dll
+C:\Users\angel\Documents\Listo_project\listo-backend\ListoAPI.DTO\bin\Debug\net8.0\ListoAPI.DTO.deps.json
+C:\Users\angel\Documents\Listo_project\listo-backend\ListoAPI.DTO\bin\Debug\net8.0\ListoAPI.DTO.dll
+C:\Users\angel\Documents\Listo_project\listo-backend\ListoAPI.DTO\bin\Debug\net8.0\ListoAPI.DTO.pdb
+C:\Users\angel\Documents\Listo_project\listo-backend\ListoAPI.DTO\obj\Debug\net8.0\ListoAPI.DTO.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\angel\Documents\Listo_project\listo-backend\ListoAPI.DTO\obj\Debug\net8.0\ListoAPI.DTO.AssemblyInfoInputs.cache
+C:\Users\angel\Documents\Listo_project\listo-backend\ListoAPI.DTO\obj\Debug\net8.0\ListoAPI.DTO.AssemblyInfo.cs
+C:\Users\angel\Documents\Listo_project\listo-backend\ListoAPI.DTO\obj\Debug\net8.0\ListoAPI.DTO.csproj.CoreCompileInputs.cache
+C:\Users\angel\Documents\Listo_project\listo-backend\ListoAPI.DTO\obj\Debug\net8.0\ListoAPI.DTO.sourcelink.json
+C:\Users\angel\Documents\Listo_project\listo-backend\ListoAPI.DTO\obj\Debug\net8.0\ListoAPI.DTO.dll
+C:\Users\angel\Documents\Listo_project\listo-backend\ListoAPI.DTO\obj\Debug\net8.0\refint\ListoAPI.DTO.dll
+C:\Users\angel\Documents\Listo_project\listo-backend\ListoAPI.DTO\obj\Debug\net8.0\ListoAPI.DTO.pdb
+C:\Users\angel\Documents\Listo_project\listo-backend\ListoAPI.DTO\obj\Debug\net8.0\ref\ListoAPI.DTO.dll
