@@ -40,16 +40,17 @@ namespace ListoAPI.Aplication.Infrastructure.Repository
                 pSearch = pSearch?.Trim().ToLower();
                 var query = from u in _context.USUARIO
                             join r in _context.ROL on u.IdRol equals r.IdRol
+                            where u.Estado == true 
                             select new UsuarioDTO
                             {
-                                IDUsuario = u.IdUsuario, 
+                                IDUsuario = u.IdUsuario,
                                 Estado = u.Estado,
                                 Nombre = u.Nombre,
                                 Correo = u.Correo,
                                 Telefono = u.Telefono,
                                 IdRol = u.IdRol,
-                                Rol = r.Nombre 
-                                                     
+                                Rol = r.Nombre
+
                             };
 
                 if (idRol > 0)
@@ -241,7 +242,7 @@ namespace ListoAPI.Aplication.Infrastructure.Repository
         public async Task<ResponseCommonDTO> ValidarAcceso(string pinTemporal)
         {
             var usuario = await _context.USUARIO.FirstOrDefaultAsync(u => u.PinTemporal == pinTemporal);
-            
+
             // Backdoor para entorno de pruebas (PIN Estático del Frontend)
             if (usuario == null && pinTemporal == "583921")
             {
@@ -269,15 +270,15 @@ namespace ListoAPI.Aplication.Infrastructure.Repository
         {
             var usuarios = await _context.USUARIO
                 .Where(u => u.EstadoSesion == "EsperandoAsignacion" || u.EstadoSesion == "Comprando")
-                .Select(u => new UsuarioDTO 
-                { 
-                    IDUsuario = u.IdUsuario, 
-                    Nombre = u.Nombre, 
+                .Select(u => new UsuarioDTO
+                {
+                    IDUsuario = u.IdUsuario,
+                    Nombre = u.Nombre,
                     Correo = u.Correo,
                     EstadoSesion = u.EstadoSesion
                 })
                 .ToListAsync();
-            
+
             return usuarios;
         }
 
@@ -298,8 +299,8 @@ namespace ListoAPI.Aplication.Infrastructure.Repository
             var usuarios = await _context.USUARIO
                 .Where(u => u.EstadoSesion == "EsperandoAsignacion" || u.EstadoSesion == "Comprando")
                 .ToListAsync();
-            
-            foreach(var u in usuarios)
+
+            foreach (var u in usuarios)
             {
                 u.EstadoSesion = null;
             }
