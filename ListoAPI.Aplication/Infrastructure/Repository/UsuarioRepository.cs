@@ -40,7 +40,6 @@ namespace ListoAPI.Aplication.Infrastructure.Repository
                 pSearch = pSearch?.Trim().ToLower();
                 var query = from u in _context.USUARIO
                             join r in _context.ROL on u.IdRol equals r.IdRol
-                            where u.Estado == true 
                             select new UsuarioDTO
                             {
                                 IDUsuario = u.IdUsuario, 
@@ -173,7 +172,7 @@ namespace ListoAPI.Aplication.Infrastructure.Repository
 
                 if (!query.Usuario.Estado)
                 {
-                    return new ResponseCommonDTO { success = false, message = "Su cuenta se encuentra inactiva." };
+                    return new ResponseCommonDTO { success = false, message = "Su cuenta ha sido suspendida." };
                 }
 
                 bool esPasswordValido = BCrypt.Net.BCrypt.Verify(password, query.Usuario.Password);
@@ -308,9 +307,26 @@ namespace ListoAPI.Aplication.Infrastructure.Repository
             return new ResponseCommonDTO { success = true, message = "Tienda vaciada" };
         }
 
-        public Task<ResponseCommonDTO> deleteItem(int pId, int idUsuarioInt, string ipOrigen)
+        public async Task<ResponseCommonDTO> deleteItem(int pId, int idUsuarioInt, string ipOrigen)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var usuario = await _context.USUARIO.FindAsync(pId);
+                if (usuario == null)
+                {
+                    return new ResponseCommonDTO { success = false, message = "Usuario no encontrado." };
+                }
+
+                usuario.Estado = false;
+                await _context.SaveChangesAsync();
+
+                return new ResponseCommonDTO { success = true, message = "Usuario suspendido correctamente." };
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error en deleteItem: {ex.Message}");
+                return new ResponseCommonDTO { success = false, message = "Error interno al suspender el usuario." };
+            }
         }
 
         public Task<UsuarioDTO> getById(int pId)

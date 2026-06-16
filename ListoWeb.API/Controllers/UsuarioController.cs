@@ -300,6 +300,17 @@ namespace ListoAPI.API.Controllers
             var resultado = await _usuarioRepository.LimpiarTienda();
             return Ok(resultado);
         }
+
+        [HttpDelete("suspender/{id}")]
+        public async Task<IActionResult> SuspenderUsuario(int id, [FromQuery] int idUsuarioAdmin = 0, [FromQuery] string ipOrigen = "")
+        {
+            var resultado = await _usuarioRepository.deleteItem(id, idUsuarioAdmin, ipOrigen);
+            if (resultado.success)
+            {
+                return Ok(resultado);
+            }
+            return BadRequest(resultado);
+        }
     }
 
 }
