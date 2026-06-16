@@ -335,9 +335,38 @@ namespace ListoAPI.Aplication.Infrastructure.Repository
             throw new NotImplementedException();
         }
 
-        public Task<List<UsuarioDTO>> getInactivosList(string pSearch = "")
+        public async Task<List<UsuarioDTO>> getInactivosList(string pSearch = "")
         {
-            throw new NotImplementedException();
+            try
+            {
+                pSearch = pSearch?.Trim().ToLower();
+                var query = from u in _context.USUARIO
+                            join r in _context.ROL on u.IdRol equals r.IdRol
+                            where u.Estado == false
+                            select new UsuarioDTO
+                            {
+                                IDUsuario = u.IdUsuario,
+                                Estado = u.Estado,
+                                Nombre = u.Nombre,
+                                Correo = u.Correo,
+                                Telefono = u.Telefono,
+                                IdRol = u.IdRol,
+                                Rol = r.Nombre
+                            };
+
+                if (!string.IsNullOrEmpty(pSearch))
+                {
+                    query = query.Where(x => x.Nombre.ToLower().Contains(pSearch) ||
+                                             x.Correo.ToLower().Contains(pSearch));
+                }
+
+                return await query.OrderBy(u => u.Nombre).ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error en getInactivosList: {ex.Message}");
+                return new List<UsuarioDTO>();
+            }
         }
 
         public Task<ResponseCommonDTO> RecuperarUsuario(int pId)

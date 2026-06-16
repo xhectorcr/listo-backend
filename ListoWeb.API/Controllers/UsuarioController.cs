@@ -229,6 +229,29 @@ namespace ListoAPI.API.Controllers
             }
         }
 
+        [Route("lista/inactivos")]
+        [HttpGet]
+        public async Task<IActionResult> GetUsuariosInactivosLista([FromQuery] string pSearch = "")
+        {
+            try
+            {
+                var usuarios = await _usuarioRepository.getInactivosList(pSearch);
+                return Ok(new
+                {
+                    data = usuarios,
+                    totalCount = usuarios.Count
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new ResponseCommonDTO
+                {
+                    success = false,
+                    message = $"Error al obtener la lista de inactivos: {ex.Message}"
+                });
+            }
+        }
+
 
         [AllowAnonymous]
         [HttpPost("crearUsuario")]
