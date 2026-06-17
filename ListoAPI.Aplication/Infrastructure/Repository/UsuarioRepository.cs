@@ -99,6 +99,20 @@ namespace ListoAPI.Aplication.Infrastructure.Repository
 
                 await _context.USUARIO.AddAsync(user);
                 await _context.SaveChangesAsync();
+
+                // Bono de 300 soles automático al registrar
+                var metodoPago = new MetodoPago
+                {
+                    IdUsuario = user.IdUsuario,
+                    Saldo = 300.0m,
+                    TokenSimulado = "AUTO_" + Guid.NewGuid().ToString().Substring(0, 8),
+                    MarcaTarjeta = "Billetera Virtual",
+                    UltimosDigitos = "0000",
+                    Estado = true
+                };
+                await _context.METODOPAGO.AddAsync(metodoPago);
+                await _context.SaveChangesAsync();
+
                 return new ResponseCommonDTO { success = true, message = "Usuario guardado correctamente" };
             }
             catch (Exception ex)
@@ -137,6 +151,19 @@ namespace ListoAPI.Aplication.Infrastructure.Repository
                 };
 
                 await _context.USUARIO.AddAsync(user);
+                await _context.SaveChangesAsync();
+
+                // Bono de 300 soles automático al registrar
+                var metodoPago = new MetodoPago
+                {
+                    IdUsuario = user.IdUsuario,
+                    Saldo = 300.0m,
+                    TokenSimulado = "AUTO_" + Guid.NewGuid().ToString().Substring(0, 8),
+                    MarcaTarjeta = "Billetera Virtual",
+                    UltimosDigitos = "0000",
+                    Estado = true
+                };
+                await _context.METODOPAGO.AddAsync(metodoPago);
                 await _context.SaveChangesAsync();
 
                 return new ResponseCommonDTO { success = true, message = "Cliente registrado correctamente." };
@@ -369,9 +396,26 @@ namespace ListoAPI.Aplication.Infrastructure.Repository
             }
         }
 
-        public Task<ResponseCommonDTO> RecuperarUsuario(int pId)
+        public async Task<ResponseCommonDTO> RecuperarUsuario(int pId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var usuario = await _context.USUARIO.FindAsync(pId);
+                if (usuario == null)
+                {
+                    return new ResponseCommonDTO { success = false, message = "Usuario no encontrado." };
+                }
+
+                usuario.Estado = true;
+                await _context.SaveChangesAsync();
+
+                return new ResponseCommonDTO { success = true, message = "Usuario activado correctamente." };
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error en RecuperarUsuario: {ex.Message}");
+                return new ResponseCommonDTO { success = false, message = "Error interno al activar el usuario." };
+            }
         }
         public Task<ResponseCommonDTO> updateItem(UsuarioDTO pItem)
         {

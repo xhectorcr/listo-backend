@@ -22,6 +22,25 @@ namespace ListoWeb.API.Data
                 Console.WriteLine($"--> Nota: No se pudo agregar la columna 'dni' automáticamente: {ex.Message}");
             }
 
+            // Crear tabla de Historial de Compras si no existe
+            try
+            {
+                context.Database.ExecuteSqlRaw(@"
+                    CREATE TABLE IF NOT EXISTS ""HistorialCompra"" (
+                        ""id_historial"" SERIAL PRIMARY KEY,
+                        ""id_usuario"" INT NOT NULL,
+                        ""fecha"" TIMESTAMP NOT NULL,
+                        ""total"" NUMERIC NOT NULL,
+                        ""cantidad_items"" INT NOT NULL
+                    );
+                ");
+                Console.WriteLine("--> Tabla 'HistorialCompra' verificada/creada.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"--> Nota: No se pudo crear la tabla 'HistorialCompra' automáticamente: {ex.Message}");
+            }
+
             // 1. Verificar e insertar Roles si no existen
             if (!context.ROL.Any())
             {

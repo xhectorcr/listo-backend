@@ -87,8 +87,32 @@ namespace ListoWeb.API.Controllers
 
             var total = items.Sum(i => i.Subtotal);
 
-            // 1. Crear el registro de Compra (Asumiendo que existe una entidad Compra/Venta, lo guardaremos o simularemos)
-            // Aquí idealmente guardaríamos en DB.
+            // Obtener el método de pago (billetera) del usuario
+            var metodoPago = await _context.Set<ListoAPI.Aplication.Core.Entities.MetodoPago>()
+                .FirstOrDefaultAsync(m => m.IdUsuario == usuarioId);
+
+            if (metodoPago == null)
+            {
+                return BadRequest(new ResponseCommonDTO { message = "El usuario no tiene una billetera registrada.", success = false });
+            }
+
+            if (metodoPago.Saldo < total)
+            {
+                return BadRequest(new ResponseCommonDTO { message = "Saldo insuficiente en la billetera.", success = false });
+            }
+
+            // Descontar saldo automáticamente
+            metodoPago.Saldo -= total;
+
+            // 1. Crear el registro de Compra en el Historial
+            var historial = new ListoAPI.Aplication.Core.Entities.HistorialCompra
+            {
+                IdUsuario = usuarioId,
+                Fecha = DateTime.UtcNow,
+                Total = total,
+                CantidadItems = items.Count
+            };
+            await _context.Set<ListoAPI.Aplication.Core.Entities.HistorialCompra>().AddAsync(historial);
             
             // 2. Limpiar Carrito
             _carritoService.LimpiarCarrito(usuarioId);
@@ -97,7 +121,7 @@ namespace ListoWeb.API.Controllers
             usuario.EstadoSesion = null;
             await _context.SaveChangesAsync();
 
-            return Ok(new ResponseCommonDTO { message = "Compra finalizada con éxito", success = true });
+            return Ok(new ResponseCommonDTO { message = $"Compra finalizada con éxito. Saldo restante: S/ {metodoPago.Saldo}", success = true });
         }
     }
 }

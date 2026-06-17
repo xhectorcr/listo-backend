@@ -17,7 +17,8 @@ namespace ListoAPI.Aplication.Infrastructure.Data
         public DbSet<Producto> PRODUCTO {get;set;}
         
         public DbSet<MetodoPago> METODOPAGO {get;set;}
-       
+        
+        public DbSet<HistorialCompra> HISTORIALCOMPRA {get;set;}
     }
     
 }

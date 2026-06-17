@@ -302,10 +302,19 @@ namespace ListoAPI.API.Controllers
 
         [AllowAnonymous]
         [HttpGet("en-tienda")]
-        public async Task<IActionResult> ObtenerUsuariosEnTienda()
+        public async Task<IActionResult> ObtenerUsuariosEnTienda([FromServices] ListoWeb.API.Services.CarritoService _carritoService)
         {
             var usuarios = await _usuarioRepository.ObtenerUsuariosEnTienda();
-            return Ok(new ResponseCommonDTO { success = true, data = usuarios });
+            
+            var result = usuarios.Select(u => new {
+                u.IDUsuario,
+                u.Nombre,
+                u.Correo,
+                u.EstadoSesion,
+                Carrito = _carritoService.ObtenerCarrito(u.IDUsuario).Select(c => $"{c.Cantidad}x {c.Nombre}").ToList()
+            });
+
+            return Ok(new ResponseCommonDTO { success = true, data = result });
         }
 
         [AllowAnonymous]
@@ -333,6 +342,40 @@ namespace ListoAPI.API.Controllers
                 return Ok(resultado);
             }
             return BadRequest(resultado);
+        }
+
+        [HttpPut("reactivar/{id}")]
+        public async Task<IActionResult> ReactivarUsuario(int id)
+        {
+            var resultado = await _usuarioRepository.RecuperarUsuario(id);
+            if (resultado.success)
+            {
+                return Ok(resultado);
+            }
+            return BadRequest(resultado);
+        }
+
+        [AllowAnonymous]
+        [HttpGet("{idUsuario}/historial")]
+        public async Task<IActionResult> GetHistorial(int idUsuario, [FromServices] ListoAPI.Aplication.Infrastructure.Data.ConfigContext _context)
+        {
+            try
+            {
+                var historial = await Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync(
+                    System.Linq.Queryable.OrderByDescending(
+                        System.Linq.Queryable.Where(
+                            _context.Set<ListoAPI.Aplication.Core.Entities.HistorialCompra>(),
+                            h => h.IdUsuario == idUsuario
+                        ),
+                        h => h.Fecha
+                    )
+                );
+                return Ok(new ResponseCommonDTO { success = true, data = historial });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new ResponseCommonDTO { success = false, message = "Error al obtener historial: " + ex.Message });
+            }
         }
     }
 
