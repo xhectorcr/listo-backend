@@ -1,7 +1,7 @@
 using System.Collections.Concurrent;
-using ListoAPI.DTO;
-using ListoAPI.Aplication.Core.Entities;
-using ListoAPI.Aplication.Core.Interfaces;
+using Listo.Application.DTOs;
+using Listo.Domain.Entities;
+using Listo.Application.Interfaces;
 
 namespace ListoWeb.API.Services
 {
@@ -62,3 +62,4 @@ namespace ListoWeb.API.Services
         }
     }
 }
+

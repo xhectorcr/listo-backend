@@ -1,5 +1,5 @@
-using ListoAPI.Aplication.Core.Interfaces;
-using ListoAPI.DTO;
+using Listo.Application.Interfaces;
+using Listo.Application.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
@@ -357,14 +357,14 @@ namespace ListoAPI.API.Controllers
 
         [AllowAnonymous]
         [HttpGet("{idUsuario}/historial")]
-        public async Task<IActionResult> GetHistorial(int idUsuario, [FromServices] ListoAPI.Aplication.Infrastructure.Data.ConfigContext _context)
+        public async Task<IActionResult> GetHistorial(int idUsuario, [FromServices] Listo.Infrastructure.Persistence.ConfigContext _context)
         {
             try
             {
                 var historial = await Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync(
                     System.Linq.Queryable.OrderByDescending(
                         System.Linq.Queryable.Where(
-                            _context.Set<ListoAPI.Aplication.Core.Entities.HistorialCompra>(),
+                            _context.Set<Listo.Domain.Entities.HistorialCompra>(),
                             h => h.IdUsuario == idUsuario
                         ),
                         h => h.Fecha

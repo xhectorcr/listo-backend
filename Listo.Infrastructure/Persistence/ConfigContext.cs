@@ -1,0 +1,24 @@
+using Listo.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
+
+namespace Listo.Infrastructure.Persistence
+{
+    public class ConfigContext : DbContext
+    {
+        public ConfigContext(DbContextOptions<ConfigContext> options) : base(options)
+        {
+        }
+ 
+        public DbSet<Rol> ROL { get; set; }
+        public DbSet<Usuario> USUARIO { get; set; }
+
+        public DbSet<Categoria> CATEGORIA { get; set; }
+
+        public DbSet<Producto> PRODUCTO {get;set;}
+        
+        public DbSet<MetodoPago> METODOPAGO {get;set;}
+        
+        public DbSet<HistorialCompra> HISTORIALCOMPRA {get;set;}
+    }
+    
+}

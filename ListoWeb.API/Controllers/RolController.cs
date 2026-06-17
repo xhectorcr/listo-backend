@@ -1,6 +1,6 @@
 
-using ListoAPI.Aplication.Core.Interfaces;
-using ListoAPI.DTO;
+using Listo.Application.Interfaces;
+using Listo.Application.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

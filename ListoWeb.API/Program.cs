@@ -1,9 +1,9 @@
 using System.Text;
 using ListoWeb.API.Data; // Importar el Inicializador
-using ListoAPI.Aplication.Core.Interfaces;
-using ListoAPI.Aplication.Infrastructure.Data;
-using ListoAPI.Aplication.Infrastructure.Repository;
-using ListoAPI.Aplication.Infrastructure.Services;
+using Listo.Application.Interfaces;
+using Listo.Infrastructure.Persistence;
+using Listo.Infrastructure.Repositories;
+using Listo.Infrastructure.ExternalServices;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -136,3 +136,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+

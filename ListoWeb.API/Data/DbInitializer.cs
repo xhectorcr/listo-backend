@@ -1,5 +1,5 @@
-using ListoAPI.Aplication.Core.Entities;
-using ListoAPI.Aplication.Infrastructure.Data;
+using Listo.Domain.Entities;
+using Listo.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
 namespace ListoWeb.API.Data
@@ -84,3 +84,4 @@ namespace ListoWeb.API.Data
         }
     }
 }
+

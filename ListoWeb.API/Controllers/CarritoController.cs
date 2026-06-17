@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
-using ListoAPI.DTO;
+using Listo.Application.DTOs;
 using ListoWeb.API.Services;
-using ListoAPI.Aplication.Core.Interfaces;
+using Listo.Application.Interfaces;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using ListoAPI.Aplication.Infrastructure.Data;
+using Listo.Infrastructure.Persistence;
 
 namespace ListoWeb.API.Controllers
 {
@@ -31,7 +31,7 @@ namespace ListoWeb.API.Controllers
             }
 
             // Buscar producto por YoloLabel
-            var producto = await _context.Set<ListoAPI.Aplication.Core.Entities.Producto>()
+            var producto = await _context.Set<Listo.Domain.Entities.Producto>()
                 .FirstOrDefaultAsync(p => p.YoloLabel.ToLower() == request.YoloLabel.ToLower() && p.Activo);
 
             if (producto == null)
@@ -65,7 +65,7 @@ namespace ListoWeb.API.Controllers
             if (request == null || string.IsNullOrEmpty(request.YoloLabel))
                 return BadRequest(new ResponseCommonDTO { message = "Datos inválidos", success = false });
 
-            var producto = await _context.Set<ListoAPI.Aplication.Core.Entities.Producto>()
+            var producto = await _context.Set<Listo.Domain.Entities.Producto>()
                 .FirstOrDefaultAsync(p => p.YoloLabel.ToLower() == request.YoloLabel.ToLower() && p.Activo);
 
             if (producto == null)
@@ -79,7 +79,7 @@ namespace ListoWeb.API.Controllers
         [HttpPost("finalizar")]
         public async Task<IActionResult> FinalizarCompra([FromBody] int usuarioId)
         {
-            var usuario = await _context.Set<ListoAPI.Aplication.Core.Entities.Usuario>().FindAsync(usuarioId);
+            var usuario = await _context.Set<Listo.Domain.Entities.Usuario>().FindAsync(usuarioId);
             if (usuario == null) return NotFound(new ResponseCommonDTO { message = "Usuario no encontrado", success = false });
 
             var items = _carritoService.ObtenerCarrito(usuarioId);
@@ -88,7 +88,7 @@ namespace ListoWeb.API.Controllers
             var total = items.Sum(i => i.Subtotal);
 
             // Obtener el método de pago (billetera) del usuario
-            var metodoPago = await _context.Set<ListoAPI.Aplication.Core.Entities.MetodoPago>()
+            var metodoPago = await _context.Set<Listo.Domain.Entities.MetodoPago>()
                 .FirstOrDefaultAsync(m => m.IdUsuario == usuarioId);
 
             if (metodoPago == null)
@@ -105,14 +105,14 @@ namespace ListoWeb.API.Controllers
             metodoPago.Saldo -= total;
 
             // 1. Crear el registro de Compra en el Historial
-            var historial = new ListoAPI.Aplication.Core.Entities.HistorialCompra
+            var historial = new Listo.Domain.Entities.HistorialCompra
             {
                 IdUsuario = usuarioId,
                 Fecha = DateTime.UtcNow,
                 Total = total,
                 CantidadItems = items.Count
             };
-            await _context.Set<ListoAPI.Aplication.Core.Entities.HistorialCompra>().AddAsync(historial);
+            await _context.Set<Listo.Domain.Entities.HistorialCompra>().AddAsync(historial);
             
             // 2. Limpiar Carrito
             _carritoService.LimpiarCarrito(usuarioId);
@@ -125,3 +125,4 @@ namespace ListoWeb.API.Controllers
         }
     }
 }
+

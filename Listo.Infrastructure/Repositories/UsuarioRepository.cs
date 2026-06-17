@@ -1,0 +1,428 @@
+using Listo.Domain.Entities;
+using Listo.Application.Interfaces;
+using Listo.Infrastructure.Persistence;
+using Listo.Application.DTOs;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using BCrypt.Net;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.Extensions.Configuration;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+
+
+
+namespace Listo.Infrastructure.Repositories
+{
+    public class UsuarioRepository : IUsuarioRepository
+    {
+        protected readonly ConfigContext _context;
+        private readonly IConfiguration _configuration;
+
+        public UsuarioRepository(ConfigContext context, IConfiguration configuration)
+        {
+            _context = context;
+            _configuration = configuration;
+
+        }
+
+
+        public async Task<(List<UsuarioDTO> usuarios, int TotalCount)> GetUsuarioList(
+    int pageNumber = 1,
+    int pageSize = 10,
+    string pSearch = "",
+    int idRol = 0
+)
+        {
+            try
+            {
+                pSearch = pSearch?.Trim().ToLower();
+                var query = from u in _context.USUARIO
+                            join r in _context.ROL on u.IdRol equals r.IdRol
+                            where u.Estado == true 
+                            select new UsuarioDTO
+                            {
+                                IDUsuario = u.IdUsuario,
+                                Estado = u.Estado,
+                                Nombre = u.Nombre,
+                                Correo = u.Correo,
+                                Telefono = u.Telefono,
+                                IdRol = u.IdRol,
+                                Rol = r.Nombre
+
+                            };
+
+                if (idRol > 0)
+                {
+                    query = query.Where(x => x.IdRol == idRol);
+                }
+                if (!string.IsNullOrEmpty(pSearch))
+                {
+                    query = query.Where(x => x.Nombre.ToLower().Contains(pSearch) ||
+                                             x.Correo.ToLower().Contains(pSearch));
+                }
+
+                var totalCount = await query.CountAsync();
+                var usuarios = await query
+                    .OrderBy(u => u.Nombre)
+                    .Skip((pageNumber - 1) * pageSize)
+                    .Take(pageSize)
+                    .ToListAsync();
+
+                return (usuarios, totalCount);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error en GetUsuarioList: {ex.Message}");
+                return (new List<UsuarioDTO>(), 0);
+            }
+        }
+
+
+        public async Task<ResponseCommonDTO> saveItem(UsuarioDTO pItem)
+        {
+            try
+            {
+
+                string passwordHash = BCrypt.Net.BCrypt.HashPassword(pItem.Password);
+
+                var user = new Usuario
+                {
+                    Password = passwordHash,
+                    Estado = pItem.Estado,
+                    Nombre = pItem.Nombre,
+                    Correo = pItem.Correo,
+                    Telefono = pItem.Telefono,
+                    IdRol = pItem.IdRol
+                };
+
+                await _context.USUARIO.AddAsync(user);
+                await _context.SaveChangesAsync();
+
+                // Bono de 300 soles automático al registrar
+                var metodoPago = new MetodoPago
+                {
+                    IdUsuario = user.IdUsuario,
+                    Saldo = 300.0m,
+                    TokenSimulado = "AUTO_" + Guid.NewGuid().ToString().Substring(0, 8),
+                    MarcaTarjeta = "Billetera Virtual",
+                    UltimosDigitos = "0000",
+                    Estado = true
+                };
+                await _context.METODOPAGO.AddAsync(metodoPago);
+                await _context.SaveChangesAsync();
+
+                return new ResponseCommonDTO { success = true, message = "Usuario guardado correctamente" };
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error en saveItem (Usuario): {ex.Message}");
+                return new ResponseCommonDTO { success = false, message = "Error interno al crear el usuario." };
+            }
+        }
+
+        public async Task<ResponseCommonDTO> RegisterClientAsync(RegistroClienteDTO pItem)
+        {
+            try
+            {
+
+                if (pItem == null)
+                {
+                    return new ResponseCommonDTO { success = false, message = "Los datos enviados son inválidos." };
+                }
+
+                bool correoExiste = await _context.USUARIO.AnyAsync(u => u.Correo == pItem.Correo);
+                if (correoExiste)
+                {
+                    return new ResponseCommonDTO { success = false, message = "El correo ya se encuentra registrado." };
+                }
+
+                string passwordHash = BCrypt.Net.BCrypt.HashPassword(pItem.Password);
+
+                var user = new Usuario
+                {
+                    Nombre = pItem.Nombre,
+                    Correo = pItem.Correo,
+                    Telefono = pItem.Telefono,
+                    Password = passwordHash,
+                    IdRol = 2,
+                    Estado = true
+                };
+
+                await _context.USUARIO.AddAsync(user);
+                await _context.SaveChangesAsync();
+
+                // Bono de 300 soles automático al registrar
+                var metodoPago = new MetodoPago
+                {
+                    IdUsuario = user.IdUsuario,
+                    Saldo = 300.0m,
+                    TokenSimulado = "AUTO_" + Guid.NewGuid().ToString().Substring(0, 8),
+                    MarcaTarjeta = "Billetera Virtual",
+                    UltimosDigitos = "0000",
+                    Estado = true
+                };
+                await _context.METODOPAGO.AddAsync(metodoPago);
+                await _context.SaveChangesAsync();
+
+                return new ResponseCommonDTO { success = true, message = "Cliente registrado correctamente." };
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error en RegisterClientAsync: {ex.Message}");
+                return new ResponseCommonDTO { success = false, message = "Error interno al crear el cliente." };
+            }
+        }
+
+
+
+
+        public async Task<ResponseCommonDTO> ValidarLogin(string correo, string password)
+        {
+            try
+            {
+
+                var query = await (from u in _context.USUARIO
+                                   join r in _context.ROL on u.IdRol equals r.IdRol
+                                   where u.Correo == correo
+                                   select new
+                                   {
+                                       Usuario = u,
+                                       NombreRol = r.Nombre
+                                   }).FirstOrDefaultAsync();
+
+
+                if (query == null)
+                {
+                    return new ResponseCommonDTO { success = false, message = "Credenciales incorrectas." };
+                }
+
+                if (!query.Usuario.Estado)
+                {
+                    return new ResponseCommonDTO { success = false, message = "Su cuenta ha sido suspendida." };
+                }
+
+                bool esPasswordValido = BCrypt.Net.BCrypt.Verify(password, query.Usuario.Password);
+
+                if (!esPasswordValido)
+                {
+                    return new ResponseCommonDTO { success = false, message = "Credenciales incorrectas." };
+                }
+
+                var claims = new[]
+                {
+            new Claim("idUsuario", query.Usuario.IdUsuario.ToString()),
+            new Claim(ClaimTypes.Name, query.Usuario.Nombre),
+            new Claim(ClaimTypes.Email, query.Usuario.Correo),
+            new Claim(ClaimTypes.Role, query.NombreRol) // Aquí usamos el JOIN
+        };
+
+                var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
+                var credenciales = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
+                var expiracion = DateTime.UtcNow.AddMinutes(double.Parse(_configuration["Jwt:ExpireMinutes"]));
+                var tokenDescriptor = new SecurityTokenDescriptor
+                {
+                    Subject = new ClaimsIdentity(claims),
+                    Expires = expiracion,
+                    Issuer = _configuration["Jwt:Issuer"],
+                    Audience = _configuration["Jwt:Audience"],
+                    SigningCredentials = credenciales
+                };
+
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var token = tokenHandler.CreateToken(tokenDescriptor);
+                string tokenString = tokenHandler.WriteToken(token);
+
+                return new ResponseCommonDTO
+                {
+                    success = true,
+                    message = "Bienvenido al sistema",
+                    data = new
+                    {
+                        idUsuario = query.Usuario.IdUsuario,
+                        token = tokenString,
+                        usuario = query.Usuario.Nombre,
+                        rol = query.NombreRol
+                    }
+                };
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error en ValidarLogin: {ex.Message}");
+                return new ResponseCommonDTO { success = false, message = "Error interno al validar el acceso." };
+            }
+        }
+
+
+        public async Task<ResponseCommonDTO> GenerarPinTemporal(int idUsuario)
+        {
+            var usuario = await _context.USUARIO.FindAsync(idUsuario);
+            if (usuario == null) return new ResponseCommonDTO { success = false, message = "Usuario no encontrado" };
+
+            Random rnd = new Random();
+            usuario.PinTemporal = rnd.Next(100000, 999999).ToString();
+            await _context.SaveChangesAsync();
+            return new ResponseCommonDTO { success = true, message = "PIN generado", data = usuario.PinTemporal };
+        }
+
+        public async Task<ResponseCommonDTO> ValidarAcceso(string pinTemporal)
+        {
+            var usuario = await _context.USUARIO.FirstOrDefaultAsync(u => u.PinTemporal == pinTemporal);
+
+            // Backdoor para entorno de pruebas (PIN Estático del Frontend)
+            if (usuario == null && pinTemporal == "583921")
+            {
+                usuario = await _context.USUARIO.FirstOrDefaultAsync(); // Asignar al primer usuario existente
+            }
+
+            if (usuario == null) return new ResponseCommonDTO { success = false, message = "PIN inválido" };
+
+            usuario.PinTemporal = null; // Invalidate PIN
+            usuario.EstadoSesion = "EsperandoAsignacion";
+            await _context.SaveChangesAsync();
+
+            return new ResponseCommonDTO { success = true, message = "Acceso concedido", data = new { usuario.IdUsuario, usuario.Nombre } };
+        }
+
+        public async Task<UsuarioDTO> ObtenerUsuarioEsperando()
+        {
+            var usuario = await _context.USUARIO.FirstOrDefaultAsync(u => u.EstadoSesion == "EsperandoAsignacion");
+            if (usuario == null) return null;
+
+            return new UsuarioDTO { IDUsuario = usuario.IdUsuario, Nombre = usuario.Nombre, Correo = usuario.Correo };
+        }
+
+        public async Task<List<UsuarioDTO>> ObtenerUsuariosEnTienda()
+        {
+            var usuarios = await _context.USUARIO
+                .Where(u => u.EstadoSesion == "EsperandoAsignacion" || u.EstadoSesion == "Comprando")
+                .Select(u => new UsuarioDTO
+                {
+                    IDUsuario = u.IdUsuario,
+                    Nombre = u.Nombre,
+                    Correo = u.Correo,
+                    EstadoSesion = u.EstadoSesion
+                })
+                .ToListAsync();
+
+            return usuarios;
+        }
+
+        public async Task<ResponseCommonDTO> AsignarTrack(int idUsuario, string trackId)
+        {
+            var usuario = await _context.USUARIO.FindAsync(idUsuario);
+            if (usuario == null) return new ResponseCommonDTO { success = false, message = "Usuario no encontrado" };
+
+            usuario.EstadoSesion = "Comprando";
+            // Aquí podríamos guardar el TrackId si lo añadimos al modelo, pero no es estrictamente necesario en DB si YOLO lo gestiona
+            await _context.SaveChangesAsync();
+
+            return new ResponseCommonDTO { success = true, message = "Asignación exitosa" };
+        }
+
+        public async Task<ResponseCommonDTO> LimpiarTienda()
+        {
+            var usuarios = await _context.USUARIO
+                .Where(u => u.EstadoSesion == "EsperandoAsignacion" || u.EstadoSesion == "Comprando")
+                .ToListAsync();
+
+            foreach (var u in usuarios)
+            {
+                u.EstadoSesion = null;
+            }
+            await _context.SaveChangesAsync();
+            return new ResponseCommonDTO { success = true, message = "Tienda vaciada" };
+        }
+
+        public async Task<ResponseCommonDTO> deleteItem(int pId, int idUsuarioInt, string ipOrigen)
+        {
+            try
+            {
+                var usuario = await _context.USUARIO.FindAsync(pId);
+                if (usuario == null)
+                {
+                    return new ResponseCommonDTO { success = false, message = "Usuario no encontrado." };
+                }
+
+                usuario.Estado = false;
+                await _context.SaveChangesAsync();
+
+                return new ResponseCommonDTO { success = true, message = "Usuario suspendido correctamente." };
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error en deleteItem: {ex.Message}");
+                return new ResponseCommonDTO { success = false, message = "Error interno al suspender el usuario." };
+            }
+        }
+
+        public Task<UsuarioDTO> getById(int pId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<List<UsuarioDTO>> getInactivosList(string pSearch = "")
+        {
+            try
+            {
+                pSearch = pSearch?.Trim().ToLower();
+                var query = from u in _context.USUARIO
+                            join r in _context.ROL on u.IdRol equals r.IdRol
+                            where u.Estado == false
+                            select new UsuarioDTO
+                            {
+                                IDUsuario = u.IdUsuario,
+                                Estado = u.Estado,
+                                Nombre = u.Nombre,
+                                Correo = u.Correo,
+                                Telefono = u.Telefono,
+                                IdRol = u.IdRol,
+                                Rol = r.Nombre
+                            };
+
+                if (!string.IsNullOrEmpty(pSearch))
+                {
+                    query = query.Where(x => x.Nombre.ToLower().Contains(pSearch) ||
+                                             x.Correo.ToLower().Contains(pSearch));
+                }
+
+                return await query.OrderBy(u => u.Nombre).ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error en getInactivosList: {ex.Message}");
+                return new List<UsuarioDTO>();
+            }
+        }
+
+        public async Task<ResponseCommonDTO> RecuperarUsuario(int pId)
+        {
+            try
+            {
+                var usuario = await _context.USUARIO.FindAsync(pId);
+                if (usuario == null)
+                {
+                    return new ResponseCommonDTO { success = false, message = "Usuario no encontrado." };
+                }
+
+                usuario.Estado = true;
+                await _context.SaveChangesAsync();
+
+                return new ResponseCommonDTO { success = true, message = "Usuario activado correctamente." };
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error en RecuperarUsuario: {ex.Message}");
+                return new ResponseCommonDTO { success = false, message = "Error interno al activar el usuario." };
+            }
+        }
+        public Task<ResponseCommonDTO> updateItem(UsuarioDTO pItem)
+        {
+            throw new NotImplementedException();
+        }
+
+
+    }
+
+}

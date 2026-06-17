@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using ListoAPI.DTO;
+using Listo.Application.DTOs;
 using System;
 
 namespace ListoWeb.API.Controllers

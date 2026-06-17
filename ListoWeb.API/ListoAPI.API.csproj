@@ -18,7 +18,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ListoAPI.Aplication\ListoAPI.Aplication.csproj" />
+    <ProjectReference Include="..\Listo.Application\Listo.Application.csproj" />
+    <ProjectReference Include="..\Listo.Infrastructure\Listo.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
