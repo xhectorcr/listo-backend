@@ -13,8 +13,9 @@ WORKDIR /src
 
 # Copy project files first to leverage Docker layer caching
 COPY ["ListoWeb.API/ListoAPI.API.csproj", "ListoWeb.API/"]
-COPY ["ListoAPI.Aplication/ListoAPI.Aplication.csproj", "ListoAPI.Aplication/"]
-COPY ["ListoAPI.DTO/ListoAPI.DTO.csproj", "ListoAPI.DTO/"]
+COPY ["Listo.Application/Listo.Application.csproj", "Listo.Application/"]
+COPY ["Listo.Domain/Listo.Domain.csproj", "Listo.Domain/"]
+COPY ["Listo.Infrastructure/Listo.Infrastructure.csproj", "Listo.Infrastructure/"]
 
 # Restore dependencies
 RUN dotnet restore "ListoWeb.API/ListoAPI.API.csproj"
