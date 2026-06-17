@@ -22,5 +22,8 @@ namespace Listo.Domain.Entities
 
         [Column("cantidad_items")]
         public int CantidadItems { get; set; }
+
+        [Column("detalles")]
+        public string Detalles { get; set; } = "[]";
     }
 }

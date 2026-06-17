@@ -32,7 +32,8 @@ namespace ListoWeb.API.Controllers
 
             // Buscar producto por YoloLabel
             var producto = await _context.Set<Listo.Domain.Entities.Producto>()
-                .FirstOrDefaultAsync(p => p.YoloLabel.ToLower() == request.YoloLabel.ToLower() && p.Activo);
+                .AsNoTracking()
+                .FirstOrDefaultAsync(p => EF.Functions.ILike(p.YoloLabel, request.YoloLabel) && p.Activo);
 
             if (producto == null)
             {
@@ -66,7 +67,8 @@ namespace ListoWeb.API.Controllers
                 return BadRequest(new ResponseCommonDTO { message = "Datos inválidos", success = false });
 
             var producto = await _context.Set<Listo.Domain.Entities.Producto>()
-                .FirstOrDefaultAsync(p => p.YoloLabel.ToLower() == request.YoloLabel.ToLower() && p.Activo);
+                .AsNoTracking()
+                .FirstOrDefaultAsync(p => EF.Functions.ILike(p.YoloLabel, request.YoloLabel) && p.Activo);
 
             if (producto == null)
                 return NotFound(new ResponseCommonDTO { message = "Producto no encontrado", success = false });
@@ -110,7 +112,8 @@ namespace ListoWeb.API.Controllers
                 IdUsuario = usuarioId,
                 Fecha = DateTime.UtcNow,
                 Total = total,
-                CantidadItems = items.Count
+                CantidadItems = items.Count,
+                Detalles = System.Text.Json.JsonSerializer.Serialize(items)
             };
             await _context.Set<Listo.Domain.Entities.HistorialCompra>().AddAsync(historial);
             

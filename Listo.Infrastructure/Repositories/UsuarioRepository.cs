@@ -37,9 +37,9 @@ namespace Listo.Infrastructure.Repositories
         {
             try
             {
-                pSearch = pSearch?.Trim().ToLower();
-                var query = from u in _context.USUARIO
-                            join r in _context.ROL on u.IdRol equals r.IdRol
+                var pSearchVal = pSearch?.Trim();
+                var query = from u in _context.USUARIO.AsNoTracking()
+                            join r in _context.ROL.AsNoTracking() on u.IdRol equals r.IdRol
                             where u.Estado == true 
                             select new UsuarioDTO
                             {
@@ -57,10 +57,10 @@ namespace Listo.Infrastructure.Repositories
                 {
                     query = query.Where(x => x.IdRol == idRol);
                 }
-                if (!string.IsNullOrEmpty(pSearch))
+                if (!string.IsNullOrEmpty(pSearchVal))
                 {
-                    query = query.Where(x => x.Nombre.ToLower().Contains(pSearch) ||
-                                             x.Correo.ToLower().Contains(pSearch));
+                    query = query.Where(x => EF.Functions.ILike(x.Nombre, $"%{pSearchVal}%") ||
+                                             EF.Functions.ILike(x.Correo, $"%{pSearchVal}%"));
                 }
 
                 var totalCount = await query.CountAsync();
@@ -100,18 +100,7 @@ namespace Listo.Infrastructure.Repositories
                 await _context.USUARIO.AddAsync(user);
                 await _context.SaveChangesAsync();
 
-                // Bono de 300 soles automático al registrar
-                var metodoPago = new MetodoPago
-                {
-                    IdUsuario = user.IdUsuario,
-                    Saldo = 300.0m,
-                    TokenSimulado = "AUTO_" + Guid.NewGuid().ToString().Substring(0, 8),
-                    MarcaTarjeta = "Billetera Virtual",
-                    UltimosDigitos = "0000",
-                    Estado = true
-                };
-                await _context.METODOPAGO.AddAsync(metodoPago);
-                await _context.SaveChangesAsync();
+                await CrearBilleteraPorDefectoAsync(user.IdUsuario);
 
                 return new ResponseCommonDTO { success = true, message = "Usuario guardado correctamente" };
             }
@@ -153,18 +142,7 @@ namespace Listo.Infrastructure.Repositories
                 await _context.USUARIO.AddAsync(user);
                 await _context.SaveChangesAsync();
 
-                // Bono de 300 soles automático al registrar
-                var metodoPago = new MetodoPago
-                {
-                    IdUsuario = user.IdUsuario,
-                    Saldo = 300.0m,
-                    TokenSimulado = "AUTO_" + Guid.NewGuid().ToString().Substring(0, 8),
-                    MarcaTarjeta = "Billetera Virtual",
-                    UltimosDigitos = "0000",
-                    Estado = true
-                };
-                await _context.METODOPAGO.AddAsync(metodoPago);
-                await _context.SaveChangesAsync();
+                await CrearBilleteraPorDefectoAsync(user.IdUsuario);
 
                 return new ResponseCommonDTO { success = true, message = "Cliente registrado correctamente." };
             }
@@ -183,8 +161,8 @@ namespace Listo.Infrastructure.Repositories
             try
             {
 
-                var query = await (from u in _context.USUARIO
-                                   join r in _context.ROL on u.IdRol equals r.IdRol
+                var query = await (from u in _context.USUARIO.AsNoTracking()
+                                   join r in _context.ROL.AsNoTracking() on u.IdRol equals r.IdRol
                                    where u.Correo == correo
                                    select new
                                    {
@@ -287,7 +265,7 @@ namespace Listo.Infrastructure.Repositories
 
         public async Task<UsuarioDTO> ObtenerUsuarioEsperando()
         {
-            var usuario = await _context.USUARIO.FirstOrDefaultAsync(u => u.EstadoSesion == "EsperandoAsignacion");
+            var usuario = await _context.USUARIO.AsNoTracking().FirstOrDefaultAsync(u => u.EstadoSesion == "EsperandoAsignacion");
             if (usuario == null) return null;
 
             return new UsuarioDTO { IDUsuario = usuario.IdUsuario, Nombre = usuario.Nombre, Correo = usuario.Correo };
@@ -295,7 +273,7 @@ namespace Listo.Infrastructure.Repositories
 
         public async Task<List<UsuarioDTO>> ObtenerUsuariosEnTienda()
         {
-            var usuarios = await _context.USUARIO
+            var usuarios = await _context.USUARIO.AsNoTracking()
                 .Where(u => u.EstadoSesion == "EsperandoAsignacion" || u.EstadoSesion == "Comprando")
                 .Select(u => new UsuarioDTO
                 {
@@ -366,9 +344,9 @@ namespace Listo.Infrastructure.Repositories
         {
             try
             {
-                pSearch = pSearch?.Trim().ToLower();
-                var query = from u in _context.USUARIO
-                            join r in _context.ROL on u.IdRol equals r.IdRol
+                var pSearchVal = pSearch?.Trim();
+                var query = from u in _context.USUARIO.AsNoTracking()
+                            join r in _context.ROL.AsNoTracking() on u.IdRol equals r.IdRol
                             where u.Estado == false
                             select new UsuarioDTO
                             {
@@ -381,10 +359,10 @@ namespace Listo.Infrastructure.Repositories
                                 Rol = r.Nombre
                             };
 
-                if (!string.IsNullOrEmpty(pSearch))
+                if (!string.IsNullOrEmpty(pSearchVal))
                 {
-                    query = query.Where(x => x.Nombre.ToLower().Contains(pSearch) ||
-                                             x.Correo.ToLower().Contains(pSearch));
+                    query = query.Where(x => EF.Functions.ILike(x.Nombre, $"%{pSearchVal}%") ||
+                                             EF.Functions.ILike(x.Correo, $"%{pSearchVal}%"));
                 }
 
                 return await query.OrderBy(u => u.Nombre).ToListAsync();
@@ -422,7 +400,20 @@ namespace Listo.Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-
+        private async Task CrearBilleteraPorDefectoAsync(int idUsuario)
+        {
+            var metodoPago = new MetodoPago
+            {
+                IdUsuario = idUsuario,
+                Saldo = 300.0m,
+                TokenSimulado = "AUTO_" + Guid.NewGuid().ToString()[..8],
+                MarcaTarjeta = "Billetera Virtual",
+                UltimosDigitos = "0000",
+                Estado = true
+            };
+            await _context.METODOPAGO.AddAsync(metodoPago);
+            await _context.SaveChangesAsync();
+        }
     }
 
 }

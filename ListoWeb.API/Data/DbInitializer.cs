@@ -31,10 +31,13 @@ namespace ListoWeb.API.Data
                         ""id_usuario"" INT NOT NULL,
                         ""fecha"" TIMESTAMP NOT NULL,
                         ""total"" NUMERIC NOT NULL,
-                        ""cantidad_items"" INT NOT NULL
+                        ""cantidad_items"" INT NOT NULL,
+                        ""detalles"" TEXT DEFAULT '[]'
                     );
                 ");
                 Console.WriteLine("--> Tabla 'HistorialCompra' verificada/creada.");
+                
+                context.Database.ExecuteSqlRaw("ALTER TABLE \"HistorialCompra\" ADD COLUMN IF NOT EXISTS \"detalles\" text DEFAULT '[]';");
             }
             catch (Exception ex)
             {

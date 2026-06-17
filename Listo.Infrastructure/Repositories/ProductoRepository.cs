@@ -100,10 +100,10 @@ namespace Listo.Infrastructure.Repositories
         {
             try
             {
-                pSearch = pSearch?.Trim().ToLower();
+                var pSearchVal = pSearch?.Trim();
 
-                var query = from c in _context.PRODUCTO
-                            join d in _context.CATEGORIA on c.IdCategoria equals d.IdCategoria
+                var query = from c in _context.PRODUCTO.AsNoTracking()
+                            join d in _context.CATEGORIA.AsNoTracking() on c.IdCategoria equals d.IdCategoria
                             where c.Activo == true 
                             select new ProductoDTO
                             {
@@ -124,10 +124,10 @@ namespace Listo.Infrastructure.Repositories
                     query = query.Where(x => x.IDCategoria == idCategoria);
                 }
 
-                if (!string.IsNullOrEmpty(pSearch))
+                if (!string.IsNullOrEmpty(pSearchVal))
                 {
-                    query = query.Where(x => x.Nombre.ToLower().Contains(pSearch) ||
-                                             x.Descripcion.ToLower().Contains(" " + pSearch + " "));
+                    query = query.Where(x => EF.Functions.ILike(x.Nombre, $"%{pSearchVal}%") ||
+                                             EF.Functions.ILike(x.Descripcion, $"% {pSearchVal} %"));
                 }
 
                 var totalCount = await query.CountAsync();
@@ -151,12 +151,12 @@ namespace Listo.Infrastructure.Repositories
 
 
         
-        public Task<ProductoDTO?> getById(int pId)
+        public async Task<ProductoDTO?> getById(int pId)
         {
             try
             {
-                var query = (from p in _context.PRODUCTO
-                             join c in _context.CATEGORIA on p.IdCategoria equals c.IdCategoria
+                var query = await (from p in _context.PRODUCTO.AsNoTracking()
+                             join c in _context.CATEGORIA.AsNoTracking() on p.IdCategoria equals c.IdCategoria
                              where p.IdProducto == pId && p.Activo == true
                              select new ProductoDTO
                              {
